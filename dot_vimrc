@@ -20,6 +20,17 @@ nnoremap <leader>Q :q!<cr>
 "forcing 256 colors
 set t_Co=256
 
+"set windows runtimepath
+
+if has('win32') || has('win64')
+set runtimepath-=~/vimfiles
+set runtimepath^=~/.vim
+set runtimepath-=~/vimfiles/after
+set runtimepath+=~/.vim/after
+endif
+
+" Command for sudo mode write
+
 command! Suw w !sudo tee % > /dev/null
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,11 +106,7 @@ set nowritebackup
 set noswapfile
 
 set undofile
-if has('win32')
-    set undodir=$HOME/.vim/undo
-else
-    set undodir=$HOME/.vim/undo
-endif
+set undodir=$HOME/.vim/undo
 
 "Automatic Go formatting
 "autocmd FileWritePost *.go '!gofmt %'
@@ -208,11 +215,7 @@ command! RemoveTrailing call TrimWhiteSpace()
 " => Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has('win32')
-    call plug#begin('~/.vim/bundle')
-else
-    call plug#begin('~/.vim/bundle')
-endif
+call plug#begin('~/.vim/bundle')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -220,10 +223,8 @@ Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'google/vim-searchindex'
 Plug 'jiangmiao/auto-pairs'
-Plug 'jremmen/vim-ripgrep'    
-Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
-Plug 'maralla/completor.vim'
+"Plug 'maralla/completor.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
