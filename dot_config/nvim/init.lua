@@ -87,6 +87,12 @@ vim.cmd([[
 filetype plugin on
 ]])
 
+
+-- Normal python tab width
+vim.cmd([[
+autocmd FileType python setlocal tabstop=2
+]])
+
 --------------------------------------------------------------------------------
 -- => Text, tab and indent related                                            --
 --------------------------------------------------------------------------------
@@ -194,7 +200,9 @@ command! RemoveTrailing call TrimWhiteSpace()
 -- => Plugin config                                                           --
 --------------------------------------------------------------------------------
 
-require('plugins')
+require("plugins")
+
+-- Telescope
 
 vim.api.nvim_set_keymap("n", "<leader>p", ":Telescope find_files<Cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<Cr>", { noremap = true })
@@ -206,7 +214,8 @@ vim.api.nvim_set_keymap("n", "<leader>gc", ":Telescope git_commits<Cr>", { norem
 vim.api.nvim_set_keymap("n", "<leader>gb", ":Telescope git_branches<Cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>gs", ":Telescope git_status<Cr>", { noremap = true })
 
--- normal python tab width
-vim.cmd([[
-autocmd FileType python setlocal tabstop=2
-]])
+-- Dirbuf
+
+require("dirbuf").setup({
+    write_cmd = "DirbufSync -confirm"
+})
