@@ -200,6 +200,11 @@ vim.api.nvim_set_keymap("n", "<leader>p", ":Telescope find_files<Cr>", { noremap
 vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<Cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>r", ":Telescope oldfiles<Cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>x", ":Telescope commands<Cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope grep_string<Cr>", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "<leader>gc", ":Telescope git_commits<Cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gb", ":Telescope git_branches<Cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gs", ":Telescope git_status<Cr>", { noremap = true })
 
 -- normal python tab width
 vim.cmd([[
