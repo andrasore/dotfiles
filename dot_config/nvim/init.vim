@@ -1,0 +1,216 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"sane defaults for all platforms
+set fileformat=unix
+
+let mapleader = " "
+let maplocalleader = " "
+
+" Fast saving
+nnoremap <leader>w :w<cr>
+
+"quittig easily
+nnoremap <leader>q :q<cr>
+nnoremap <leader>Q :q!<cr>
+
+"forcing 256 colors
+set t_Co=256
+
+
+" Command for sudo mode write
+
+command! Suw w !sudo tee % > /dev/null
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set 10 lines to the cursor - when moving vertically using j/k
+set scrolloff=4
+
+" Turn on the WiLd menu
+set wildignorecase
+set wildignore=*.o,*~,*.pyc
+
+set cmdheight=1
+
+" Searching options
+set ignorecase
+set smartcase
+set nohlsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set matchtime=2
+
+" No annoying sound on errors
+set noerrorbells
+
+"latex
+let g:tex_flavor='latex'
+
+"numbers
+set number
+set relativenumber
+
+"workaround for keycodes beginning with esc
+set notimeout
+set ttimeout
+set ttimeoutlen=0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+
+" Use Unix as the standard file type
+set fileformats=unix,dos,mac
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowritebackup
+set noswapfile
+
+set undofile
+
+"Automatic Go formatting
+"autocmd FileWritePost *.go '!gofmt %'
+
+"Enable filetype plugin loading
+filetype plugin on
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+set smartindent
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Smart way to move between windows
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Switch CWD
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" Remember info about open buffers on close
+set viminfo^=%
+
+" Folding
+set foldmethod=indent   "fold based on indent
+set foldnestmax=2      "deepest fold is 10 levels
+set nofoldenable        "don't fold by default
+
+""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
+
+set statusline=\ %{StatuslineMode()}
+set statusline+=\ \|
+set statusline+=\ %m
+set statusline+=%=
+set statusline+=\ %{&ff}
+set statusline+=\ \|
+set statusline+=\ %{strlen(&fenc)?&fenc:'none'}
+set statusline+=\ \|
+set statusline+=\ %y
+set statusline+=\ \|
+set statusline+=\ %P
+set statusline+=\ %c,%l\ "
+
+function! StatuslineMode()
+    let l:mode=mode()
+    if l:mode==#"n"
+        return "Normal"
+    elseif l:mode==?"v"
+        return "Visual"
+    elseif l:mode==#"i"
+        return "Insert"
+    elseif l:mode==#"R"
+        return "Replace"
+    elseif l:mode==?"s"
+        return "Select"
+    elseif l:mode==#"t"
+        return "Terminal"
+    elseif l:mode==#"c"
+        return "Command"
+    elseif l:mode==#"!"
+        return "Shell"
+    endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"command for removing trailing whitespaces
+function! TrimWhiteSpace()
+  %s/\s\s*$//
+  ''
+:endfunction
+
+command! RemoveTrailing call TrimWhiteSpace()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+call plug#begin()
+
+Plug 'altercation/vim-colors-solarized'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'freitass/todo.txt-vim'
+Plug 'godlygeek/tabular'
+Plug 'google/vim-searchindex'
+Plug 'jiangmiao/auto-pairs'
+Plug 'justinmk/vim-dirvish'
+"Plug 'maralla/completor.vim'
+Plug 'tpope/vim-repeat'
+"Plug 'tpope/vim-surround'
+"Plug 'ziglang/zig.vim'
+
+call plug#end()
+
+nnoremap <silent><leader>p :CtrlP<Cr>
+nnoremap <silent><leader>b :CtrlPBuffer<Cr>
+nnoremap <silent><leader>r :CtrlPMRUFiles<Cr>
+nnoremap <silent><leader>l :CtrlPLine<Cr>
+
+let g:ctrlp_max_files = 5000
+
+"normal python tab width
+autocmd FileType python setlocal tabstop=2
