@@ -18,6 +18,8 @@ return require('packer').startup(function ()
     use 'elihunter173/dirbuf.nvim'
     -- use 'maralla/completor.vim'
     use 'tpope/vim-repeat'
+    use { 'ms-jpq/coq_nvim', branch = 'coq' }
+    use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
     -- use 'tpope/vim-surround'
     -- use 'ziglang/zig.vim'
 end)

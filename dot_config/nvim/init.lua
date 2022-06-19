@@ -200,6 +200,8 @@ command! RemoveTrailing call TrimWhiteSpace()
 -- => Plugin config                                                           --
 --------------------------------------------------------------------------------
 
+vim.g.coq_settings = { auto_start = 'shut-up' }
+
 require("plugins")
 
 -- Telescope
