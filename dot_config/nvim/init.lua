@@ -2,17 +2,17 @@
 --  => General                                                                --
 --------------------------------------------------------------------------------
 --  Sane defaults for all platforms
-vim.opt.fileformat = "unix"
+vim.opt.fileformat = 'unix'
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Fast saving
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>w', ':w<cr>', { noremap = true })
 
 -- Quitting easily
-vim.api.nvim_set_keymap("n", "<leader>q", ":q<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>Q", ":q!<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>Q', ':q!<cr>', { noremap = true })
 
 -- Command for sudo mode write
 
@@ -26,7 +26,7 @@ vim.opt.scrolloff = 4
 
 -- Turn on the WiLd menu
 vim.opt.wildignorecase = true
-vim.opt.wildignore = "*.o,*~,*.pyc"
+vim.opt.wildignore = '*.o,*~,*.pyc'
 
 vim.opt.cmdheight = 1
 
@@ -50,7 +50,7 @@ vim.opt.matchtime = 2
 vim.opt.errorbells = false
 
 -- Latex
-vim.g.tex_flavor = "latex"
+vim.g.tex_flavor = 'latex'
 
 -- Line numbers
 vim.opt.number = true
@@ -70,7 +70,7 @@ syntax enable
 ]])
 
 -- Use Unix as the standard file type
-vim.opt.fileformats = "unix,dos,mac"
+vim.opt.fileformats = 'unix,dos,mac'
 
 --------------------------------------------------------------------------------
 -- => Files, backups and undo                                                 --
@@ -113,13 +113,13 @@ vim.opt.smartindent = true
 --------------------------------------------------------------------------------
 
 -- Smart way to move between windows
-vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true })
 
 -- Switch CWD
-vim.api.nvim_set_keymap("n", "<leader>cd", ":cd %:p:h<cr>:pwd<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>cd', ':cd %:p:h<cr>:pwd<cr>', { noremap = true })
 
 -- Return to last edit position when opening files
 vim.cmd([[
@@ -202,22 +202,47 @@ command! RemoveTrailing call TrimWhiteSpace()
 
 vim.g.coq_settings = { auto_start = 'shut-up' }
 
-require("plugins")
+require('plugins')
+
+-- Treesitter
+
+require('nvim-treesitter.configs').setup({
+    ensure_installed = { 'lua', 'javascript', 'typescript', 'json', 'yaml', 'jsdoc' },
+    highlight = {
+        enable = true,
+    }
+})
+
+-- LSP
+
+require('lspconfig').tsserver.setup({})
 
 -- Telescope
 
-vim.api.nvim_set_keymap("n", "<leader>p", ":Telescope find_files<Cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<Cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>r", ":Telescope oldfiles<Cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>x", ":Telescope commands<Cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope grep_string<Cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>p', ':Telescope find_files<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>r', ':Telescope oldfiles<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>x', ':Telescope commands<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope grep_string<Cr>', { noremap = true })
 
-vim.api.nvim_set_keymap("n", "<leader>gc", ":Telescope git_commits<Cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>gb", ":Telescope git_branches<Cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>gs", ":Telescope git_status<Cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gc', ':Telescope git_commits<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gb', ':Telescope git_branches<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gs', ':Telescope git_status<Cr>', { noremap = true })
+
+-- Project.nvim
+
+require('project_nvim').setup({}) 
+
+require('telescope').load_extension('projects')
+
+vim.api.nvim_set_keymap('n', '<leader>o', ':Telescope projects<Cr>', { noremap = true })
+
+-- Fugitive
+
+vim.api.nvim_set_keymap('n', '<leader>gg', ':Git<Cr>', { noremap = true })
 
 -- Dirbuf
 
-require("dirbuf").setup({
-    write_cmd = "DirbufSync -confirm"
+require('dirbuf').setup({
+    write_cmd = 'DirbufSync -confirm'
 })
