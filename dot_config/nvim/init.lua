@@ -140,6 +140,26 @@ vim.opt.foldnestmax = 2
 -- don't fold by default
 vim.opt.foldenable = false
 
+-- Handle tabs
+
+vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>tq', ':tabclose<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>tl', ':tabnext<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>th', ':tabprevious<Cr>', { noremap = true })
+
+-- Handle terminal
+
+vim.api.nvim_set_keymap('n', '<leader>x', ':terminal<Cr>', { noremap = true })
+
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+
+-- Terminal should start in insert mode
+
+vim.cmd([[
+autocmd TermOpen * startinsert
+]])
+
+
 --------------------------------------------------------------------------------
 -- => Status line - TODO - port to lua                                        --
 --------------------------------------------------------------------------------
@@ -200,7 +220,26 @@ command! RemoveTrailing call TrimWhiteSpace()
 -- => Plugin config                                                           --
 --------------------------------------------------------------------------------
 
-vim.g.coq_settings = { auto_start = 'shut-up' }
+-- Coq
+
+vim.g.coq_settings = {
+    auto_start = 'shut-up',
+    keymap = {
+        jump_to_mark = '', 
+    },
+}
+
+-- this merges the sign column and the number column
+vim.opt.signcolumn = 'number'
+
+-- Neoformat
+
+vim.g.neoformat_try_node_exe = 1
+
+vim.cmd([[
+autocmd BufWritePre *.js Neoformat
+]])
+
 
 require('plugins')
 
@@ -222,8 +261,8 @@ require('lspconfig').tsserver.setup({})
 vim.api.nvim_set_keymap('n', '<leader>p', ':Telescope find_files<Cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<Cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>r', ':Telescope oldfiles<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>x', ':Telescope commands<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope grep_string<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope live_grep<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>*', ':Telescope grep_string<Cr>', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Telescope git_commits<Cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gb', ':Telescope git_branches<Cr>', { noremap = true })

@@ -6,21 +6,17 @@ end
 
 return require('packer').startup(function ()
     use 'wbthomason/packer.nvim'
-    use { 'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
-    -- use 'freitass/todo.txt-vim'
+    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use 'godlygeek/tabular'
     use 'neovim/nvim-lspconfig'
     use 'google/vim-searchindex'
     use 'jiangmiao/auto-pairs'
     use 'ahmedkhalf/project.nvim'
-    -- use 'justinmk/vim-dirvish'
     use 'elihunter173/dirbuf.nvim'
-    -- use 'maralla/completor.vim'
     use 'tpope/vim-repeat'
+    use 'sbdchd/neoformat'
     use { 'ms-jpq/coq_nvim', branch = 'coq' }
     use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'tpope/vim-fugitive'
-    -- use 'tpope/vim-surround'
-    -- use 'ziglang/zig.vim'
 end)
