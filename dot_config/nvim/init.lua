@@ -82,7 +82,7 @@ vim.opt.swapfile = false
 
 vim.opt.undofile = true
 
--- "Enable filetype plugin loading
+-- Enable filetype plugin loading
 vim.cmd([[
 filetype plugin on
 ]])
@@ -154,19 +154,25 @@ vim.api.nvim_set_keymap('n', '<leader>x', ':terminal<Cr>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 
 -- Terminal should start in insert mode
-
 vim.cmd([[
 autocmd TermOpen * startinsert
+]])
+
+
+-- No line numbers in terminal
+vim.cmd([[
+autocmd TermOpen * setlocal nonumber norelativenumber
 ]])
 
 
 --------------------------------------------------------------------------------
 -- => Status line - TODO - port to lua                                        --
 --------------------------------------------------------------------------------
--- Always show the status line
-vim.cmd([[
-set laststatus=2
 
+-- Always show the status line
+vim.opt.laststatus = 2
+
+vim.cmd([[
 set statusline=\ %{StatuslineMode()}
 set statusline+=\ \|
 set statusline+=\ %m
@@ -267,6 +273,19 @@ vim.api.nvim_set_keymap('n', '<leader>*', ':Telescope grep_string<Cr>', { norema
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Telescope git_commits<Cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gb', ':Telescope git_branches<Cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', ':Telescope git_status<Cr>', { noremap = true })
+
+require('telescope').setup({
+    defaults = {
+        layout_strategy = 'bottom_pane',
+        border = false,
+        preview = false,
+        layout_config = {
+            prompt_position = 'bottom'
+        },
+    }
+})
+
+require('telescope').load_extension('fzf')
 
 -- Project.nvim
 

@@ -7,6 +7,7 @@ end
 return require('packer').startup(function ()
     use 'wbthomason/packer.nvim'
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'godlygeek/tabular'
     use 'neovim/nvim-lspconfig'
     use 'google/vim-searchindex'
