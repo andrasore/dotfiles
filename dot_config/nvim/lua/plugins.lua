@@ -16,6 +16,7 @@ return require('packer').startup(function ()
     use 'elihunter173/dirbuf.nvim'
     use 'tpope/vim-repeat'
     use 'sbdchd/neoformat'
+    use 'rebelot/heirline.nvim'
     use { 'ms-jpq/coq_nvim', branch = 'coq' }
     use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

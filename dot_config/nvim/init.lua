@@ -164,50 +164,6 @@ vim.cmd([[
 autocmd TermOpen * setlocal nonumber norelativenumber
 ]])
 
-
---------------------------------------------------------------------------------
--- => Status line - TODO - port to lua                                        --
---------------------------------------------------------------------------------
-
--- Always show the status line
-vim.opt.laststatus = 2
-
-vim.cmd([[
-set statusline=\ %{StatuslineMode()}
-set statusline+=\ \|
-set statusline+=\ %m
-set statusline+=%=
-set statusline+=\ %{&ff}
-set statusline+=\ \|
-set statusline+=\ %{strlen(&fenc)?&fenc:'none'}
-set statusline+=\ \|
-set statusline+=\ %y
-set statusline+=\ \|
-set statusline+=\ %P
-set statusline+=\ %c,%l\ "
-
-function! StatuslineMode()
-    let l:mode=mode()
-    if l:mode==#"n"
-        return "Normal"
-    elseif l:mode==?"v"
-        return "Visual"
-    elseif l:mode==#"i"
-        return "Insert"
-    elseif l:mode==#"R"
-        return "Replace"
-    elseif l:mode==?"s"
-        return "Select"
-    elseif l:mode==#"t"
-        return "Terminal"
-    elseif l:mode==#"c"
-        return "Command"
-    elseif l:mode==#"!"
-        return "Shell"
-    endif
-endfunction
-]])
-
 --------------------------------------------------------------------------------
 -- => Editing mappings                                                        --
 --------------------------------------------------------------------------------
@@ -304,3 +260,7 @@ vim.api.nvim_set_keymap('n', '<leader>gg', ':Git<Cr>', { noremap = true })
 require('dirbuf').setup({
     write_cmd = 'DirbufSync -confirm'
 })
+
+-- Heirline
+
+require('heirline').setup(require('statusline'))
