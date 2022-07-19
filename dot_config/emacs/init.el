@@ -26,6 +26,9 @@
 ;; Don't show the splash screen
 (setq inhibit-startup-message t) 
 
+;; Display line numbers in every buffer
+(global-display-line-numbers-mode 1)
+
 ;;;;;;;;;;;;;;;;;;
 ;; Gui Settings ;;
 ;;;;;;;;;;;;;;;;;;
@@ -33,14 +36,14 @@
 ;; Turn off some unneeded UI elements
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
 
-;; Display line numbers in every buffer
-(global-display-line-numbers-mode 1)
-
-;; Select theme
+;; Apply the following settings conditionally
+;; Not all Emacs installs have GUI support
 (when (display-graphic-p)
-(load-theme 'deeper-blue)) 
+    (scroll-bar-mode -1)
+    ;; Select theme
+    (load-theme 'deeper-blue)
+) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package configuration ;;
@@ -53,6 +56,7 @@
 
 ;; Download use-package
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 
 ;; Evil mode
