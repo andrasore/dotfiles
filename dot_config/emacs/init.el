@@ -43,6 +43,8 @@
     (scroll-bar-mode -1)
     ;; Select theme
     (load-theme 'deeper-blue)
+    ;; Set font - TODO - check if exists
+    (set-frame-font "Iosevka 12" nil t)
 ) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -59,10 +61,13 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; Evil mode
+;; Evil mod
 (use-package evil
   :ensure t
   :init
+  ;; Disable evil-keybindings because of evil-collection. See
+  ;; https://github.com/emacs-evil/evil-collection/issues/60
+  (setq evil-want-keybinding nil)
   (evil-mode 1)
   (define-key evil-normal-state-map (kbd "<SPC> q") 'evil-quit)
   (define-key evil-normal-state-map (kbd "<SPC> w") 'evil-write)
@@ -76,6 +81,10 @@
   (evil-want-C-u-scroll t)
   )
 
+(use-package evil-collection
+  :ensure t
+  :after (:all evil)
+  :init (evil-collection-init))
 
 ;; Company for in-buffer completion
 (use-package company
@@ -99,6 +108,11 @@
 
 ;; consult.el for additional completion commands
 (use-package consult
+  :ensure t)
+
+;; Magit for git
+
+(use-package magit
   :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;
