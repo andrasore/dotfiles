@@ -76,6 +76,10 @@
   (define-key evil-normal-state-map (kbd "<SPC> f") 'consult-ripgrep)
   (define-key evil-normal-state-map (kbd "<SPC> p") 'consult-find)
   (define-key evil-normal-state-map (kbd "<SPC> x") 'execute-extended-command)
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "-") 'dired-current-file-dir)
   :custom
   (evil-want-C-u-scroll t)
