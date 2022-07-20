@@ -90,6 +90,14 @@
   :after (:all evil)
   :init (evil-collection-init))
 
+;; doom-modeline for modeline
+
+(use-package doom-modeline
+  :ensure t
+  :init
+  (doom-modeline-mode 1)
+  (setq doom-modeline-height 14))
+
 ;; Company for in-buffer completion
 (use-package company
   :ensure t
