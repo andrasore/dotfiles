@@ -28,6 +28,7 @@
 
 ;; Display line numbers in every buffer
 (global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative)
 
 ;;;;;;;;;;;;;;;;;;
 ;; Gui Settings ;;
@@ -76,6 +77,8 @@
   (define-key evil-normal-state-map (kbd "<SPC> f") 'consult-ripgrep)
   (define-key evil-normal-state-map (kbd "<SPC> p") 'consult-find)
   (define-key evil-normal-state-map (kbd "<SPC> x") 'execute-extended-command)
+  (define-key evil-normal-state-map (kbd "<SPC> gg") 'magit)
+  (define-key evil-normal-state-map (kbd "<SPC> gf") 'magit-file-dispatch)
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
@@ -97,6 +100,11 @@
   :init
   (doom-modeline-mode 1)
   (setq doom-modeline-height 14))
+
+;; Install doom themes
+
+(use-package doom-themes
+  :ensure t)
 
 ;; Company for in-buffer completion
 (use-package company
