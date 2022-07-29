@@ -30,6 +30,12 @@
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 
+;; Trigger window reposition when cursor gets near to top/bottom (like Vim)
+(setq scroll-margin 7)
+
+;; Do not recenter cursor when window is repositioned (like Vim)
+(setq scroll-conservatively 101)
+
 ;;;;;;;;;;;;;;;;;;
 ;; Gui Settings ;;
 ;;;;;;;;;;;;;;;;;;
@@ -62,7 +68,11 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; Evil mod
+;; Evil mode
+;(use-package undo-tree
+  ;:ensure t
+  ;:init (global-undo-tree-mode 1))
+
 (use-package evil
   :ensure t
   :init
@@ -72,11 +82,12 @@
   (evil-mode 1)
   (define-key evil-normal-state-map (kbd "<SPC> q") 'evil-quit)
   (define-key evil-normal-state-map (kbd "<SPC> w") 'evil-write)
-  (define-key evil-normal-state-map (kbd "<SPC> r") 'consult-recent-file)
+  (define-key evil-normal-state-map (kbd "<SPC> r") 'consult-buffer)
   (define-key evil-normal-state-map (kbd "<SPC> b") 'consult-buffer)
   (define-key evil-normal-state-map (kbd "<SPC> f") 'consult-ripgrep)
   (define-key evil-normal-state-map (kbd "<SPC> p") 'consult-find)
   (define-key evil-normal-state-map (kbd "<SPC> x") 'execute-extended-command)
+  (define-key evil-normal-state-map (kbd "<SPC> t") 'vterm)
   (define-key evil-normal-state-map (kbd "<SPC> gg") 'magit)
   (define-key evil-normal-state-map (kbd "<SPC> gf") 'magit-file-dispatch)
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
@@ -86,6 +97,7 @@
   (define-key evil-normal-state-map (kbd "-") 'dired-current-file-dir)
   :custom
   (evil-want-C-u-scroll t)
+  ;(evil-undo-system 'undo-tree)
   )
 
 (use-package evil-collection
@@ -128,12 +140,22 @@
 
 ;; consult.el for additional completion commands
 (use-package consult
-  :ensure t)
+  :ensure t
+  :init (setq consult-find-args "find . -not ( -wholename */.* -prune ) -not ( -wholename */node_modules -prune )"))
 
 ;; Magit for git
-
 (use-package magit
   :ensure t)
+
+;; Vterm for fast terminal emulation
+(use-package vterm
+  :ensure t)
+
+;; Projectile for managing projects
+;(use-package projectile
+  ;:ensure t
+  ;:init
+  ;(projectile-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Helper functions ;;
@@ -144,3 +166,8 @@
   "Opens the directory of the current buffer in dired"
   (interactive)
   (dired default-directory))
+
+;; Helper function for copying under WSL/Windows
+(defun wsl-copy (start end)
+  (interactive "r")
+  (shell-command-on-region start end "clip.exe"))
