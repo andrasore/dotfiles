@@ -74,6 +74,12 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
 ;; Set relative line numbering
-(setq line-number-mode 'relative)
+(setq display-line-numbers-type 'relative)
+
+;; Disable file watching for lsp
+(setq lsp-enable-file-watchers nil)
+
+(after! lsp-ui
+        ;; Disable annoying signature in minibuffer
+        (setq lsp-eldoc-enable-hover nil))
