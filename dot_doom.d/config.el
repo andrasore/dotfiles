@@ -83,3 +83,8 @@
 (after! lsp-ui
         ;; Disable annoying signature in minibuffer
         (setq lsp-eldoc-enable-hover nil))
+
+;; Disable lsp formatting (for builtin "format")
+(setq +format-with-lsp nil)
+
+(setq doom-theme 'doom-challenger-deep)
