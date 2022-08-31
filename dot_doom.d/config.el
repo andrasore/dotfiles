@@ -87,4 +87,4 @@
 ;; Disable lsp formatting (for builtin "format")
 (setq +format-with-lsp nil)
 
-(setq doom-theme 'doom-challenger-deep)
+(setq doom-theme 'doom-tokyo-night)
