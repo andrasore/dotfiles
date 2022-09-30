@@ -465,7 +465,7 @@ for_window [class="urxvt"] border pixel 1
 
 # Define colors variables (name does not reflect color, they were replaced):
 set_from_resource $darkblue background      #08052b
-set_from_resource $lightblue color2      #5294e2
+set_from_resource $lightblue color5      #5294e2
 set_from_resource $urgentred color1     #e53935
 set_from_resource $white foreground          #ffffff
 set_from_resource $black color0          #000000
