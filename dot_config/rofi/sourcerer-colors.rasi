@@ -1,0 +1,32 @@
+/*******************************************************
+ * ROFI Arch Dark Transparent colors for EndeavourOS
+ * Maintainer: joekamprad <joekamprad@endeavouros.com>
+ *******************************************************/
+* {
+    active-background:           #222222;
+    active-foreground:           #719611;
+    alternate-active-background: @background;
+    alternate-active-foreground: @foreground;
+    alternate-normal-background: @background;
+    alternate-normal-foreground: @foreground;
+    alternate-urgent-background: @background;
+    alternate-urgent-foreground: @foreground;
+    background-color:            @background;
+    background:                  #111111;
+    blue:                        #6688aa;
+    border-color:                #528b8b;
+    foreground:                  #c2c2b0;
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    red:                         #aa4450;
+    selected-active-background:  @active-background;
+    selected-active-foreground:  @active-foreground;
+    selected-normal-background:  @active-background;
+    selected-normal-foreground:  @active-foreground;
+    selected-urgent-background:  @active-background;
+    selected-urgent-foreground:  @active-foreground;
+    separatorcolor:              #8f6f8f;
+    spacing:                     2;
+    urgent-background:           @background;
+    urgent-foreground:           @foreground;
+}
