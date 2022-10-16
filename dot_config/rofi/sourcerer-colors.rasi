@@ -3,7 +3,7 @@
  * Maintainer: joekamprad <joekamprad@endeavouros.com>
  *******************************************************/
 * {
-    active-background:           #222222;
+    active-background:           #111111;
     active-foreground:           #719611;
     alternate-active-background: @background;
     alternate-active-foreground: @foreground;
@@ -12,7 +12,7 @@
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
     background-color:            @background;
-    background:                  #111111;
+    background:                  #222222;
     blue:                        #6688aa;
     border-color:                #528b8b;
     foreground:                  #c2c2b0;
