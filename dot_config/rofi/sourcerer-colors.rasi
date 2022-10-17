@@ -25,7 +25,7 @@
     selected-normal-foreground:  @active-foreground;
     selected-urgent-background:  @active-background;
     selected-urgent-foreground:  @active-foreground;
-    separatorcolor:              #8f6f8f;
+    separatorcolor:              #528b8b;
     spacing:                     2;
     urgent-background:           @background;
     urgent-foreground:           @foreground;

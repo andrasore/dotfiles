@@ -17,7 +17,7 @@ configuration {
 
 window {
     background-color: @background;
-    border:           0;
+    border:           2px;
     padding:          30;
 }
 listview {
@@ -38,7 +38,7 @@ textbox {
 }
 listview {
     fixed-height: 0;
-    border:       8px 0px 0px ;
+    border:       0px 0px 0px ;
     border-color: @separatorcolor;
     spacing:      8px ;
     scrollbar:    false;
