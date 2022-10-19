@@ -48,3 +48,7 @@
 
 Xcursor.theme: Adwaita
 Xcursor.size: 16
+
+! Xterm settings
+
+XTerm.vt100.faceName: Terminus:size=10:antialias=false
