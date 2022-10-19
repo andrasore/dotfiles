@@ -171,7 +171,7 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec xterm
 
 # kill focused window
 bindsym $mod+q kill
@@ -411,6 +411,9 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 #exec --no-startup-id sleep 2 && xfce4-terminal
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
+
+# start redshift
+exec --no-startup-id redshift -t 6500K:2000K
 
 # launch polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --hack

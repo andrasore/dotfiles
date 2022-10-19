@@ -49,6 +49,11 @@
 Xcursor.theme: Adwaita
 Xcursor.size: 16
 
-! Xterm settings
+! XTerm settings
 
+XTerm.termName: xterm-256color
+XTerm.ttyModes: erase ^?
+XTerm.vt100.backarrowKey: false
 XTerm.vt100.faceName: Terminus:size=10:antialias=false
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
