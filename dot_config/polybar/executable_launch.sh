@@ -1,73 +1,27 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/polybar"
-themes=(`ls --hide="launch.sh" $dir`)
+# Add this script to your wm startup file.
 
-launch_bar() {
-	# Terminate already running bar instances
-	killall -q polybar
+DIR="$HOME/.config/polybar"
 
-	# Wait until the processes have been shut down
-	while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+# Terminate already running bar instances
+killall -q polybar
 
-	# Launch the bar
-	if [[ "$style" == "hack" || "$style" == "cuts" ]]; then
-		polybar -q top -c "$dir/$style/config.ini" &
-		polybar -q bottom -c "$dir/$style/config.ini" &
-	elif [[ "$style" == "pwidgets" ]]; then
-		bash "$dir"/pwidgets/launch.sh --main
-	else
-		polybar -q main -c "$dir/$style/config.ini" &	
-	fi
-}
+# Wait until the processes have been shut down
+while pgrep -x polybar >/dev/null; do sleep 1; done
 
-if [[ "$1" == "--material" ]]; then
-	style="material"
-	launch_bar
+screens=$(xrandr --listactivemonitors | grep -v "Monitors" | cut -d" " -f6)
 
-elif [[ "$1" == "--shades" ]]; then
-	style="shades"
-	launch_bar
-
-elif [[ "$1" == "--hack" ]]; then
-	style="hack"
-	launch_bar
-
-elif [[ "$1" == "--docky" ]]; then
-	style="docky"
-	launch_bar
-
-elif [[ "$1" == "--cuts" ]]; then
-	style="cuts"
-	launch_bar
-
-elif [[ "$1" == "--shapes" ]]; then
-	style="shapes"
-	launch_bar
-
-elif [[ "$1" == "--grayblocks" ]]; then
-	style="grayblocks"
-	launch_bar
-
-elif [[ "$1" == "--blocks" ]]; then
-	style="blocks"
-	launch_bar
-
-elif [[ "$1" == "--colorblocks" ]]; then
-	style="colorblocks"
-	launch_bar
-
-elif [[ "$1" == "--forest" ]]; then
-	style="forest"
-	launch_bar
-
+if [[ $(xrandr --listactivemonitors | grep -v "Monitors" | cut -d" " -f4 | cut -d"+" -f2- | uniq | wc -l) == 1 ]]; then
+  MONITOR=$(polybar --list-monitors | cut -d":" -f1) TRAY_POS=right polybar main &
 else
-	cat <<- EOF
-	Usage : launch.sh --theme
-		
-	Available Themes :
-	--blocks    --colorblocks    --cuts      --docky
-	--forest    --grayblocks     --hack      --material
-	--shades    --shapes
-	EOF
+  primary=$(xrandr --query | grep primary | cut -d" " -f1)
+
+  for m in $screens; do
+    if [[ $primary == $m ]]; then
+        MONITOR=$m TRAY_POS=right polybar -q top -c "$DIR"/config.ini &
+    else
+        MONITOR=$m TRAY_POS=none polybar -q secondary -c "$DIR"/config.ini &
+    fi
+  done
 fi
