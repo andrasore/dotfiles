@@ -33,6 +33,10 @@
             "unlocked": ""
         }
     },
+    "sway/language": {
+        "format": "{}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
