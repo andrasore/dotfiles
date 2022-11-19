@@ -72,10 +72,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 ### Input configuration
 
-    input * {
+input * {
     xkb_layout "us,hu"
     xkb_options "caps:escape"
-    }
+}
 
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -112,7 +112,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -235,26 +235,28 @@ bindsym $mod+Escape exec swaylock -c 000000
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+# bar {
+    # position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command i3status
+    # status_command i3status
 
-    font $font
+    # font $font
 
-    colors {
-        background $black
-        statusline $white
-        separator $darkgrey
+    # colors {
+        # background $black
+        # statusline $white
+        # separator $darkgrey
 
-        focused_workspace  $lightblue $darkblue $white
-        active_workspace   $grey $mediumgrey $white
-        inactive_workspace $grey $darkblue $darkgrey
-        urgent_workspace   $yellowbrown $urgentred $white
-        binding_mode       $yellowbrown $urgentred $white
-    }
-}
+        # focused_workspace  $lightblue $darkblue $white
+        # active_workspace   $grey $mediumgrey $white
+        # inactive_workspace $grey $darkblue $darkgrey
+        # urgent_workspace   $yellowbrown $urgentred $white
+        # binding_mode       $yellowbrown $urgentred $white
+    # }
+# }
+
+exec waybar
 
 include /etc/sway/config.d/*
