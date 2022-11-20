@@ -18,8 +18,8 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $font Terminus 8
+set $menu bemenu-run --fn $font
 
 
 font $font
@@ -257,6 +257,16 @@ bindsym $mod+Escape exec swaylock -c 000000
     # }
 # }
 
-exec waybar
+bar {
+  swaybar_command waybar
+}
 
 include /etc/sway/config.d/*
+
+# Autostart apps
+
+exec gammastep -l 47.51:19.05 -t 5000K:2500K
+
+exec nm-applet --indicator
+
+exec mako
