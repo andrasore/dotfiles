@@ -91,6 +91,10 @@ label:focus {
   background-color: #000000;
 }
 
+#tray {
+  padding-right: 5px;
+}
+
 #tray > .passive {
   -gtk-icon-effect: dim;
 }

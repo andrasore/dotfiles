@@ -227,7 +227,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Screenshot with grim & slurp
-bindsym --release $mod+p exec grim -g "$(slurp)"
+bindsym $mod+p exec grim -g "$(slurp)"
 
 # Screen lock
 bindsym $mod+Escape exec swaylock -c 000000
@@ -288,4 +288,4 @@ exec gammastep -l 47.51:19.05 -t 5000K:2500K
 
 exec nm-applet --indicator
 
-exec mako
+exec mako --font $font
