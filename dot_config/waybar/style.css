@@ -8,7 +8,7 @@ window#waybar {
   outline: none;
   background-color: #282828;
   /* background-image: url("./charlie-brown.svg"); */
-  border: 3px groove #32302f;
+  border: 3px ridge #32302f;
   color: #ebdbb2;
   transition-property: background-color;
   transition-duration: 0.5s;
