@@ -58,7 +58,7 @@ button:hover {
   border-bottom: 3px solid #ebdbb2;
 }
 
-label {
+button label {
   padding: 0 10px;
   color: #ebdbb2;
   text-shadow: 2px 2px 3px #000000;
