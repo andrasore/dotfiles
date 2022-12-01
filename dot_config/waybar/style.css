@@ -25,6 +25,7 @@ button {
   border: none;
   border-radius: 0;
   padding: 0 0;
+  min-height: 2em;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
