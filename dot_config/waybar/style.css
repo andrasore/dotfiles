@@ -24,7 +24,7 @@ button {
   /* Avoid rounded borders under each button name */
   border: none;
   border-radius: 0;
-  padding: 0 0 0 0;
+  padding: 0 0;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -56,6 +56,12 @@ button:hover {
 #mode {
   background-color: #64727d;
   border-bottom: 3px solid #ebdbb2;
+}
+
+widget label {
+  padding: 0 10px;
+  color: #ebdbb2;
+  text-shadow: 2px 2px 3px #000000;
 }
 
 button label {
