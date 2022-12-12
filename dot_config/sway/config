@@ -296,3 +296,7 @@ exec nm-applet --indicator
 exec blueman-applet
 
 exec mako --font $font
+
+# Required for screen sharing
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

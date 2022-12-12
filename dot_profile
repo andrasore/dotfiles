@@ -32,7 +32,7 @@ if [ -e /home/andras/.nix-profile/etc/profile.d/nix.sh ]; then . /home/andras/.n
 export MOZ_ENABLE_WAYLAND=1
 
 # Waybar tray requires this
-export XDG_CURRENT_DESKTOP=Unity
+export XDG_CURRENT_DESKTOP=sway
 
 if [ -z $DISPLAY  ] && [ "$(tty)" = "/dev/tty1"  ]; then
       exec sway
