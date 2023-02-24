@@ -1,15 +1,22 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: Siji, Terminus;
+  font-family: Siji, Terminus, Gohu GohuFont;
   font-size: 11px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 window#waybar {
   outline: none;
-  background-color: #c0c0c0;
+  /*background: linear-gradient(
+    90deg,
+    #b978ab 0%,
+    #1c1d20 15%,
+    #1c1d20 85%,
+    #4fb3d8 100%
+  );*/
+  background-color: #171717;
   /* background-image: url("./charlie-brown.svg"); */
-  border: 3px ridge #32302f;
+  border: 3px ridge #686858;
   border-style: none none inset none;
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -38,7 +45,7 @@ button:hover {
 #workspaces button {
   padding: 0 10px;
   background-color: transparent;
-  color: #000000;
+  color: #8181a6;
 }
 
 #workspaces button:hover {
@@ -46,11 +53,11 @@ button:hover {
 }
 
 #workspaces button.focused label {
-  color: #800080;
+  color: #c2c2b0;
 }
 
 #workspaces button.urgent label {
-  color: #800000;
+  color: #aa4450;
 }
 
 #mode {
@@ -58,6 +65,8 @@ button:hover {
   border-bottom: 3px solid #ebdbb2;
 }
 
+/* "window" is the id of sway window title widget */
+#window,
 #clock,
 #battery,
 #cpu,
@@ -73,9 +82,10 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#language,
 #mpd {
   padding: 0 10px;
-  color: #000000;
+  color: #c2c2b0;
 }
 
 #window,
@@ -100,10 +110,6 @@ button:hover {
   animation-direction: alternate;
 }
 
-label:focus {
-  background-color: #000000;
-}
-
 #tray {
   padding-right: 5px;
 }
@@ -114,7 +120,7 @@ label:focus {
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: #eb4d4b;
+  background-color: #aa4450;
 }
 
 #language {

@@ -41,6 +41,7 @@ font $font
 #
 # exec swayidle -w \
 #          timeout 300 'swaylock -f -c 000000' \
+#
 #          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 #          before-sleep 'swaylock -f -c 000000'
 #
@@ -256,6 +257,10 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# lights control
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -281,6 +286,10 @@ bindsym XF86AudioPrev exec playerctl previous
     # }
 # }
 
+# Handle application windows
+
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+
 bar {
   swaybar_command waybar
 }
@@ -289,7 +298,7 @@ include /etc/sway/config.d/*
 
 # Autostart apps
 
-exec gammastep -l 47.51:19.05 -t 5000K:2500K
+exec gammastep -l 47.51:19.05 -t 6500K:2500K
 
 exec nm-applet --indicator
 

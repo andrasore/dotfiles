@@ -22,6 +22,8 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "Terminus" :size 16))
+
+(setq doom-themes-treemacs-enable-variable-pitch nil)
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -31,7 +33,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-sourcerer)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -77,11 +79,12 @@
 (setq display-line-numbers-type 'relative)
 
 ;; Disable file watching for lsp
-(setq lsp-enable-file-watchers nil)
+;; (setq lsp-enable-file-watchers nil)
 
 (after! lsp-ui
         ;; Disable annoying signature in minibuffer
         (setq lsp-eldoc-enable-hover nil))
+        ;;(setq lsp-ui-sideline-show-hover t))
 
 ;; Disable lsp formatting (for builtin "format")
 (setq +format-with-lsp nil)
@@ -91,3 +94,22 @@
 
 ;; Open all project in a new workspace
 (setq +workspaces-on-switch-project-behavior t)
+
+;; Increase GC treshold for lsp
+(setq gc-cons-treshold (* 100 1024 1024))
+
+;; Increase process output read for lsp
+(setq read-process-output-max (* 1024 1024))
+
+;; Work around lsp json parse bug (https://github.com/emacs-lsp/lsp-mode/issues/2681)
+ (advice-add 'json-parse-buffer :around
+              (lambda (orig &rest rest)
+                (while (re-search-forward "\\u0000" nil t)
+                  (replace-match ""))
+                (apply orig rest)))
+
+;; Set lsp idle delay to a larger number because of slow language servers
+(setq lsp-idle-delay 0.800)
+
+;; Disable evil when using prodigy
+;; (evil-set-initial-state 'prodigy-mode 'emacs)
