@@ -55,22 +55,6 @@ font $font
 # hide borders adjacent to screen edge
     hide_edge_borders both
 
-# Window colors
-    set $darkblue #282828
-    set $lightblue #b16286
-    set $urgentred #cc241d
-    set $white #ebdbb2
-    set $black #282828
-    set $darkgrey #928374
-    set $grey #a89984
-    set $mediumgrey #689d6a
-    set $yellowbrown #fabd2f
-
-    client.focused              $lightblue  $darkblue   $white      $mediumgrey     $mediumgrey
-    client.unfocused            $darkblue   $darkblue   $grey       $darkgrey       $darkgrey
-    client.focused_inactive     $darkblue   $darkblue   $grey       $black          $black
-    client.urgent               $urgentred  $urgentred  $white      $yellowbrown    $yellowbrown
-
 ### Input configuration
 
 input "type:keyboard" {

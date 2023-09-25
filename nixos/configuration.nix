@@ -18,10 +18,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "posso"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+  hardware.bluetooth.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Budapest";
@@ -41,20 +43,11 @@
   fonts = {
     fonts = with pkgs; [
       terminus_font
+      terminus_font_ttf
       font-awesome
       source-sans
     ];
   };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound.
   services.pipewire = {
@@ -100,9 +93,11 @@
      gcc
      libtool
    # Programs for Sway
-     foot
-     grim
-     slurp
+     foot # Terminal
+     grim # Screenshot
+     slurp # Screenshot
+     mako # Notifications
+     gammastep # For reduced blue light
      wl-clipboard
      bemenu
      wdisplays
@@ -111,6 +106,9 @@
      dracula-theme
      dracula-icon-theme
      glib #gsettings
+     networkmanagerapplet
+     alsa-utils
+     pavucontrol
    # Applications
      firefox
      xfce.thunar
@@ -127,9 +125,10 @@
   # List services that you want to enable:
 
   services.emacs.defaultEditor = true;
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  services.blueman.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
