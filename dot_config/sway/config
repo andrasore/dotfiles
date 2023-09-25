@@ -50,10 +50,10 @@ font $font
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 # border indicator on windows:
-    default_border pixel 1
+    default_border normal 2
 
 # hide borders adjacent to screen edge
-    hide_edge_borders both
+    hide_edge_borders smart
 
 ### Input configuration
 
@@ -288,7 +288,7 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Dracula'
     gsettings set $gnome-schema icon-theme 'Dracula'
     # gsettings set $gnome-schema cursor-theme 'Dracula'
-    gsettings set $gnome-schema font-name 'Source Sans 9'
+    gsettings set $gnome-schema font-name 'Noto Sans 9'
 }
 
 # Autostart apps

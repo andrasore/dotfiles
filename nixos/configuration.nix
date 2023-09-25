@@ -19,8 +19,6 @@
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "posso"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   hardware.bluetooth.enable = true;
@@ -28,25 +26,28 @@
   # Set your time zone.
   time.timeZone = "Europe/Budapest";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
      font = "Lat2-Terminus16";
      keyMap = "us";
-    # useXkbConfig = true; # use xkbOptions in tty.
   };
 
   fonts = {
+    enableDefaultFonts = true;
     fonts = with pkgs; [
       terminus_font
       terminus_font_ttf
       font-awesome
-      source-sans
+      noto-fonts
+      noto-fonts-emoji
     ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Noto" ];
+        sansSerif = [ "Noto" ];
+      };
+    };
   };
 
   # Enable sound.
@@ -75,18 +76,24 @@
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
      initialPassword = "changemeplz"; };
 
+  # Start Sway on logging in from tty1
+  programs.bash.loginShellInit = ''
+      if [ -z $DISPLAY  ] && [ "$(tty)" = "/dev/tty1"  ]; then
+            exec sway
+      fi
+  '';
+
 
   environment.systemPackages = with pkgs; [
    # Basic utilities
-     chezmoi
      curl
      emacs29-gtk3
      fd
      git
-     gh
      ripgrep
      neovim
      wget
+     tldr
    # For emacs vterm
      cmake
      gnumake
@@ -105,10 +112,11 @@
      waybar
      dracula-theme
      dracula-icon-theme
-     glib #gsettings
+     glib # Gsettings
      networkmanagerapplet
      alsa-utils
      pavucontrol
+     xdg-utils # For xdg-open etc
    # Applications
      firefox
      xfce.thunar
@@ -125,21 +133,9 @@
   # List services that you want to enable:
 
   services.emacs.defaultEditor = true;
-  # Enable the OpenSSH daemon.
+
   services.openssh.enable = true;
-
   services.blueman.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
