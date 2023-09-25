@@ -1,13 +1,13 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running `nixos-help`).
+# This config file is supposed to be _symlinked_ to /etc/nixos/configuration.nix
 
 { config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
+      # Include the results of the hardware scan. Use absolute path so
+      # symlinking this file should work.
+      /etc/nixos/hardware-configuration.nix
       ./home-manager.nix
     ];
 
@@ -15,8 +15,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  virtualisation.virtualbox.guest.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -38,6 +36,14 @@
      font = "Lat2-Terminus16";
      keyMap = "us";
     # useXkbConfig = true; # use xkbOptions in tty.
+  };
+
+  fonts = {
+    fonts = with pkgs; [
+      terminus_font
+      font-awesome
+      source-sans
+    ];
   };
 
   # Enable the X11 windowing system.
@@ -74,21 +80,21 @@
   users.users.andras = {
      isNormalUser = true;
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-     initialPassword = "changemeplz";
-  };
+     initialPassword = "changemeplz"; };
 
 
   environment.systemPackages = with pkgs; [
    # Basic utilities
      chezmoi
      curl
-     emacs
+     emacs29-gtk3
      fd
      git
      gh
      ripgrep
      neovim
      wget
+   # For emacs vterm
      cmake
      gnumake
      gcc
@@ -96,12 +102,18 @@
    # Programs for Sway
      foot
      grim
+     slurp
      wl-clipboard
      bemenu
      wdisplays
      swaylock
+     waybar
+     dracula-theme
+     dracula-icon-theme
+     glib #gsettings
    # Applications
      firefox
+     xfce.thunar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -137,6 +149,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
 

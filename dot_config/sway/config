@@ -296,6 +296,17 @@ bar {
 
 include /etc/sway/config.d/*
 
+# Set GTK theme
+
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Dracula'
+    gsettings set $gnome-schema icon-theme 'Dracula'
+    # gsettings set $gnome-schema cursor-theme 'Dracula'
+    gsettings set $gnome-schema font-name 'Source Sans 9'
+}
+
 # Autostart apps
 
 exec gammastep -l 47.51:19.05 -t 6500K:2500K
