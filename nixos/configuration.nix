@@ -23,6 +23,12 @@
 
   hardware.bluetooth.enable = true;
 
+  virtualisation.docker.autoPrune.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Budapest";
 
@@ -83,6 +89,10 @@
       fi
   '';
 
+  # For building the cursor theme
+  nixpkgs.config.permittedInsecurePackages = [
+    "imagemagick-6.9.12-68"
+  ];
 
   environment.systemPackages = with pkgs; [
    # Basic utilities
@@ -112,6 +122,7 @@
      waybar
      dracula-theme
      dracula-icon-theme
+     hackneyed # Mouse cursors
      glib # Gsettings
      networkmanagerapplet
      alsa-utils
