@@ -2,6 +2,8 @@
 
 { config, pkgs, ... }:
 
+let hostOpts = import ./host.nix pkgs;
+in
 {
   imports =
     [
@@ -18,7 +20,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "posso"; # Define your hostname.
+  networking.hostName = hostOpts.hostName; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   hardware.bluetooth.enable = true;
@@ -131,7 +133,7 @@
    # Applications
      firefox
      xfce.thunar
-  ];
+  ] ++ hostOpts.extraSystemPackages;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
