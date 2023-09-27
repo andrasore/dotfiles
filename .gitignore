@@ -1,2 +1,3 @@
-nixos/result
+result
 nixos/host.nix
+nixos/extra-packages.nix

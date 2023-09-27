@@ -2,8 +2,6 @@
 
 { config, pkgs, ... }:
 
-let hostOpts = import ./host.nix pkgs;
-in
 {
   imports =
     [
@@ -11,6 +9,7 @@ in
       # symlinking this file should work.
       /etc/nixos/hardware-configuration.nix
       ./home-manager.nix
+      ./host.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -20,7 +19,6 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = hostOpts.hostName; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   hardware.bluetooth.enable = true;
@@ -133,7 +131,7 @@ in
    # Applications
      firefox
      xfce.thunar
-  ] ++ hostOpts.extraSystemPackages;
+  ] ++ (import ./extra-packages.nix pkgs);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
