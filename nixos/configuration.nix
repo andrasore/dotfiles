@@ -79,7 +79,7 @@
 
   users.users.andras = {
      isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
      initialPassword = "changemeplz"; };
 
   # Start Sway on logging in from tty1
@@ -104,6 +104,8 @@
      neovim
      wget
      tldr
+     zip
+     unzip
    # For emacs vterm
      cmake
      gnumake

@@ -1,7 +1,0 @@
-{ config, lib, pkgs, ... }:
-
-# Edit this file with host-specific options.
-
-{
-  networking.hostName = "posso"; # Define your hostname.
-}
