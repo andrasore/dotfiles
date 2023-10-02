@@ -225,12 +225,12 @@ bindsym $mod+Escape exec swaylock -c 000000
 # Multimedia Keys
 
 # volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+bindsym XF86AudioRaiseVolume exec amixer -D default sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D default sset Master 5%-
 
 # gradular volume control
-bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+
-bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%-
+bindsym $mod+XF86AudioRaiseVolume exec amixer -D default sset Master 1%+
+bindsym $mod+XF86AudioLowerVolume exec amixer -D default sset Master 1%-
 
 # mute
 bindsym XF86AudioMute exec amixer sset Master toggle
