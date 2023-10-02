@@ -148,6 +148,8 @@
   services.emacs.defaultEditor = true;
 
   services.openssh.enable = true;
+  programs.ssh.startAgent = true;
+
   services.blueman.enable = true;
 
   # This value determines the NixOS release from which the default
