@@ -18,7 +18,10 @@ in
       la = "ls -A";
     };
 
-    programs.bash.enable = true;
+    programs.bash = {
+      enable = true;
+      enableVteIntegration = true;
+    };
 
     programs.direnv.enable = true;
 

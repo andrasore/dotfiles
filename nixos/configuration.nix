@@ -82,12 +82,17 @@
      extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
      initialPassword = "changemeplz"; };
 
-  # Start Sway on logging in from tty1
-  programs.bash.loginShellInit = ''
+  environment = {
+    sessionVariables = {
+        GRIM_DEFAULT_DIR = "/home/andras/Pictures";
+    };
+    # Start Sway on logging in from tty1
+    loginShellInit = ''
       if [ -z $DISPLAY  ] && [ "$(tty)" = "/dev/tty1"  ]; then
             exec sway
       fi
-  '';
+    '';
+  };
 
   # For building the cursor theme
   nixpkgs.config.permittedInsecurePackages = [
