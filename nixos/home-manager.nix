@@ -34,8 +34,7 @@ in
     };
 
     # These config files are just linked to their proper directories
-    xdg.configFile."sway/config".source = ../dot_config/sway/config;
-    xdg.configFile."i3status/config".source = ../dot_config/i3status/config;
+    xdg.configFile."sway/config".source = ../dot_config/sway/config; 
     xdg.configFile."waybar/config".source = ../dot_config/waybar/config; 
     xdg.configFile."waybar/style.css".source = ../dot_config/waybar/style.css;
     xdg.configFile."foot/foot.ini".source = ../dot_config/foot/foot.ini;

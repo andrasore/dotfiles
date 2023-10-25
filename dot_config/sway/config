@@ -222,19 +222,35 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+# bar {
+    # position top
 
-    #When the status_command prints a new line to stdout, swaybar updates.
-    #The default just shows the current date and time.
-    status_command i3status
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    # status_command i3status
 
-    font $font
-}
+    # font $font
+
+    # colors {
+        # background $black
+        # statusline $white
+        # separator $darkgrey
+
+        # focused_workspace  $lightblue $darkblue $white
+        # active_workspace   $grey $mediumgrey $white
+        # inactive_workspace $grey $darkblue $darkgrey
+        # urgent_workspace   $yellowbrown $urgentred $white
+        # binding_mode       $yellowbrown $urgentred $white
+    # }
+# }
 
 # Handle application windows
 
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+
+bar {
+  swaybar_command waybar
+}
 
 include /etc/sway/config.d/*
 
