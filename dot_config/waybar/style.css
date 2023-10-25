@@ -1,25 +1,15 @@
 * {
+  /* To avoid getting f'd by the GTK theme */
+  all: initial;
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: Siji, Terminus, Gohu GohuFont;
   font-size: 11px;
   font-weight: normal;
+  background-color: #171717;
 }
 
 window#waybar {
   outline: none;
-  /*background: linear-gradient(
-    90deg,
-    #b978ab 0%,
-    #1c1d20 15%,
-    #1c1d20 85%,
-    #4fb3d8 100%
-  );*/
-  background-color: #171717;
-  /* background-image: url("./charlie-brown.svg"); */
-  border: 3px ridge #686858;
-  border-style: none none inset none;
-  transition-property: background-color;
-  transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
