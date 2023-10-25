@@ -19,35 +19,9 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $font Terminus 8
-set $menu bemenu-run -b --fn $font
-
+set $menu bemenu-run -b --nf '#F8F8F2' --nb '#282A36' --sb '#6272A4' --sf '#F8F8F2' --fn $font
 
 font $font
-
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 
 # border indicator on windows:
     default_border normal 2
@@ -97,7 +71,7 @@ input "type:keyboard" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit' -B 'Yes, shutdown' 'shutdown 0'
 #
 # Moving around:
 #
@@ -248,35 +222,19 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-# bar {
-    # position top
+bar {
+    position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    # status_command i3status
+    #When the status_command prints a new line to stdout, swaybar updates.
+    #The default just shows the current date and time.
+    status_command i3status
 
-    # font $font
-
-    # colors {
-        # background $black
-        # statusline $white
-        # separator $darkgrey
-
-        # focused_workspace  $lightblue $darkblue $white
-        # active_workspace   $grey $mediumgrey $white
-        # inactive_workspace $grey $darkblue $darkgrey
-        # urgent_workspace   $yellowbrown $urgentred $white
-        # binding_mode       $yellowbrown $urgentred $white
-    # }
-# }
+    font $font
+}
 
 # Handle application windows
 
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
-
-bar {
-  swaybar_command waybar
-}
 
 include /etc/sway/config.d/*
 

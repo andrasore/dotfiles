@@ -121,12 +121,12 @@
      grim # Screenshot
      slurp # Screenshot
      mako # Notifications
+     i3status # Status bar
      gammastep # For reduced blue light
      wl-clipboard
      bemenu
      wdisplays
      swaylock
-     waybar
      dracula-theme
      dracula-icon-theme
      hackneyed # Mouse cursors
