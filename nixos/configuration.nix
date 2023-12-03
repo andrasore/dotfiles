@@ -40,8 +40,8 @@
   };
 
   fonts = {
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       terminus_font
       terminus_font_ttf
       font-awesome
@@ -128,8 +128,7 @@
      wdisplays
      swaylock
      waybar
-     dracula-theme
-     dracula-icon-theme
+     tango-icon-theme
      hackneyed # Mouse cursors
      glib # Gsettings
      networkmanagerapplet
