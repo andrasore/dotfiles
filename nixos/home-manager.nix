@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
   imports = [
@@ -11,7 +11,7 @@ in
   home-manager.useUserPackages = true;
 
   home-manager.users.andras = {
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
 
     home.shellAliases = {
       ll = "ls -alF";
