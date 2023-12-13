@@ -17,8 +17,8 @@
   boot.blacklistedKernelModules = ["nouveau"];
   networking.hostName = "loki"; # Define your hostname.
 
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk17;
-  };
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  } ];
 }

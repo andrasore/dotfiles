@@ -77,10 +77,9 @@
     wrapperFeatures.gtk = true;
   };
 
-
   users.users.andras = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
      initialPassword = "changemeplz"; };
 
   environment = {
@@ -156,6 +155,8 @@
   programs.ssh.startAgent = true;
 
   services.blueman.enable = true;
+
+  programs.light.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

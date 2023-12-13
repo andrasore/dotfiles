@@ -33,6 +33,7 @@ window#waybar #workspaces button.focused {
 #memory,
 #language,
 #battery,
+#backlight,
 #tray,
 #mpd {
   padding: 0 10px;
