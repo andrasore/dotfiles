@@ -257,13 +257,12 @@ include /etc/sway/config.d/*
 seat seat0 xcursor_theme Hackneyed 16
 
 # Set GTK theme
-set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Adwaita'
-    gsettings set $gnome-schema icon-theme 'Tango'
-    gsettings set $gnome-schema cursor-theme 'Hackneyed'
-    gsettings set $gnome-schema font-name 'Noto Sans 9'
+    gsettings set org.gnome.desktop.interface gtk-theme 'Zukitre'
+    gsettings set org.gnome.desktop.interface icon-theme 'Tango'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Hackneyed'
+    gsettings set org.gnome.desktop.interface font-name 'Noto Sans 9'
 }
 
 # Autostart apps

@@ -127,13 +127,15 @@
      wdisplays
      swaylock
      waybar
-     tango-icon-theme
-     hackneyed # Mouse cursors
      glib # Gsettings
      networkmanagerapplet
      alsa-utils
      pavucontrol
      xdg-utils # For xdg-open etc
+   # Themes
+     zuki-themes
+     tango-icon-theme
+     hackneyed # Mouse cursors
    # Applications
      firefox
      xfce.thunar
