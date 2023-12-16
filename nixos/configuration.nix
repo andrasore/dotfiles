@@ -138,7 +138,6 @@
      hackneyed # Mouse cursors
    # Applications
      firefox
-     xfce.thunar
   ] ++ (import ./extra-packages.nix pkgs);
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -155,6 +154,14 @@
 
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
+
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 
   services.blueman.enable = true;
 
