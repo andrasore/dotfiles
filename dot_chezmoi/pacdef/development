@@ -1,0 +1,10 @@
+[arch]
+cmake
+direnv
+make
+emacs-wayland
+neovim
+git
+github-cli
+ripgrep
+fd
