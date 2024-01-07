@@ -1,4 +1,10 @@
 [arch]
+bluez
+bluez-utils
+pipewire-pulse
+tldr
+unzip
+zip
 which
 terminus-font
 vi

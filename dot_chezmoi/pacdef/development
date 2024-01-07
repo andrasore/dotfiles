@@ -1,4 +1,6 @@
 [arch]
+intltool
+nix
 cmake
 direnv
 make

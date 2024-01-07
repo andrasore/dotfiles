@@ -1,4 +1,9 @@
 [arch]
+blueman
+gvfs
+thunar
+thunar-volman
+tumbler
 bemenu
 gammastep
 grim
