@@ -215,8 +215,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # lights control
-bindsym XF86MonBrightnessUp exec brightnessctl s +5%
-bindsym XF86MonBrightnessDown exec brightnessctl s -5%
+bindsym XF86MonBrightnessUp exec brightnessctl s 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 
 # Status Bar:
 #
