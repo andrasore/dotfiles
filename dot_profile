@@ -29,6 +29,9 @@ if [ -e /home/andras/.nix-profile/etc/profile.d/nix.sh ]; then . /home/andras/.n
 # Force Wayland for Firefox
 export MOZ_ENABLE_WAYLAND=1
 
+# Pictures folder for screenshots
+export GRIM_DEFAULT_DIR="/home/andras/Pictures"
+
 # Waybar tray requires this
 export XDG_CURRENT_DESKTOP=sway
 
