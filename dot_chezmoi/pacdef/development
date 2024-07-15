@@ -1,4 +1,6 @@
 [arch]
+docker
+docker-compose
 intltool
 nix
 cmake

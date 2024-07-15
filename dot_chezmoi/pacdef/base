@@ -1,4 +1,6 @@
 [arch]
+alsa-utils
+brightnessctl
 bluez
 bluez-utils
 pipewire-pulse

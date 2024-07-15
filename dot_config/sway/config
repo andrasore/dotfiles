@@ -258,7 +258,7 @@ seat seat0 xcursor_theme Hackneyed 16
 # Set GTK theme
 
 exec_always {
-    gsettings set org.gnome.desktop.interface gtk-theme 'Zukitre'
+    gsettings set org.gnome.desktop.interface gtk-theme 'Zukitwo'
     gsettings set org.gnome.desktop.interface icon-theme 'Tango'
     gsettings set org.gnome.desktop.interface cursor-theme 'Hackneyed'
     gsettings set org.gnome.desktop.interface font-name 'DejaVu Sans 9'

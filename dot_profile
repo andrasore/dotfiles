@@ -24,6 +24,10 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ -d "$HOME/.npm-global/bin" ] ; then
+    PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
 if [ -e /home/andras/.nix-profile/etc/profile.d/nix.sh ]; then . /home/andras/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # Force Wayland for Firefox

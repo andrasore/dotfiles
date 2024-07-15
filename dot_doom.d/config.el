@@ -33,7 +33,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-sourcerer)
+(setq doom-theme 'doom-tomorrow-night)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -79,7 +79,7 @@
 (setq display-line-numbers-type 'relative)
 
 ;; Disable file watching for lsp
-;; (setq lsp-enable-file-watchers nil)
+(setq lsp-enable-file-watchers nil)
 
 (after! lsp-ui
         ;; Disable annoying signature in minibuffer
@@ -101,15 +101,9 @@
 ;; Increase process output read for lsp
 (setq read-process-output-max (* 1024 1024))
 
-;; Work around lsp json parse bug (https://github.com/emacs-lsp/lsp-mode/issues/2681)
- (advice-add 'json-parse-buffer :around
-              (lambda (orig &rest rest)
-                (while (re-search-forward "\\u0000" nil t)
-                  (replace-match ""))
-                (apply orig rest)))
-
 ;; Set lsp idle delay to a larger number because of slow language servers
 (setq lsp-idle-delay 0.800)
 
-;; Disable evil when using prodigy
-;; (evil-set-initial-state 'prodigy-mode 'emacs)
+;; Stop projectile from registering projects
+(setq projectile-track-known-projects-automatically nil)
+(setq projectile-auto-discover nil)
