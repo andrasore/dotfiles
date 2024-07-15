@@ -13,7 +13,7 @@ window#waybar #workspaces button {
   font-weight: normal;
   padding: 1px;
   border: 0px;
-  color: #c2c2c2;
+  color: #cdd6f4;
   background-color: #000000;
 }
 
@@ -37,5 +37,5 @@ window#waybar #workspaces button.focused {
 #tray,
 #mpd {
   padding: 0 10px;
-  color: #c2c2b0;
+  color: #cdd6f4;
 }
