@@ -33,7 +33,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-tokyo-night)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -101,9 +101,14 @@
 ;; Increase process output read for lsp
 (setq read-process-output-max (* 1024 1024))
 
-;; Set lsp idle delay to a larger number because of slow language servers
-(setq lsp-idle-delay 0.800)
-
 ;; Stop projectile from registering projects
 (setq projectile-track-known-projects-automatically nil)
 (setq projectile-auto-discover nil)
+
+;; Map leader c x for flymake instead of flycheck menu
+(map! :leader :desc "List errors" :prefix ("c") "x" #'flymake-show-buffer-diagnostics)
+;; Add eglot code actions shortcut
+(map! :leader :desc "Code actions" :prefix ("c") "a" #'eglot-code-actions)
+
+;; Stop eldoc from writing to echo area
+(setq eldoc-echo-area-use-multiline-p nil)
