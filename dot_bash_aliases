@@ -1,4 +1,8 @@
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias h="cat ~/.bash_eternal_history | rg"
+
+search_history() {
+    cat ~/.bash_eternal_history | rg "$1" | tail -n 20 -
+}
+alias h=search_history
