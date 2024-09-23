@@ -3,6 +3,6 @@ alias la='ls -A'
 alias l='ls -CF'
 
 search_history() {
-    cat ~/.bash_eternal_history | rg "$1" | tail -n 20 -
+    cat ~/.bash_eternal_history | rg "$1" | tail -n ${2:-5} -
 }
 alias h=search_history
