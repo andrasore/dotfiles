@@ -114,3 +114,13 @@
 
 ;; Stop eldoc from writing to echo area
 (setq eldoc-echo-area-use-multiline-p nil)
+
+(setq eglot-extend-to-xref t)
+
+;; Remap major modes so we can use treesitter
+(setq major-mode-remap-alist
+ '((java-mode . java-ts-mode)
+   (typescript-mode . typescript-ts-mode)))
+
+(setq treesit-load-name-override-list '((ts "libtree-sitter-typescript" "tree_sitter_typescript")
+                                        (tsx "libtree-sitter-tsx" "tree_sitter_tsx")))
