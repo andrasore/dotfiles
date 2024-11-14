@@ -5,28 +5,18 @@
 	"modules-left": [
 		"sway/mode",
 		"sway/workspaces",
-		"custom/arrow10"
 	],
 
 	"modules-right": [
-		"custom/arrow9",
 		"pulseaudio",
-		"custom/arrow8",
 		"network",
-		"custom/arrow7",
 		"memory",
-		"custom/arrow6",
 		"cpu",
-		"custom/arrow5",
 		"temperature",
-		"custom/arrow4",
 		"battery",
-		"custom/arrow3",
 		"sway/language",
-		"custom/arrow2",
 		"tray",
 		"clock#date",
-		"custom/arrow1",
 		"clock#time"
 	],
 
@@ -158,56 +148,6 @@
 		"icon-size": 18
 		//"spacing": 10
 	},
-
-	"custom/arrow1": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow2": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow3": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow4": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow5": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow6": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow7": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow8": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow9": {
-		"format": "",
-		"tooltip": false
-	},
-
-	"custom/arrow10": {
-		"format": "",
-		"tooltip": false
-	}
 }
 
 // vi:ft=jsonc
