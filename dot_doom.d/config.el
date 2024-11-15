@@ -33,7 +33,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-sourcerer)
+(setq doom-theme 'doom-dracula)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -104,23 +104,3 @@
 ;; Stop projectile from registering projects
 (setq projectile-track-known-projects-automatically nil)
 (setq projectile-auto-discover nil)
-
-;; Map leader c x for flymake instead of flycheck menu
-(map! :leader :desc "List errors" :prefix ("c") "x" #'flymake-show-buffer-diagnostics)
-;; Add eglot code actions shortcut
-(map! :leader :desc "Code actions" :prefix ("c") "a" #'eglot-code-actions)
-;; Add eglot code actions shortcut
-(map! :leader :desc "Code actions" :prefix ("c") "r" #'eglot-rename)
-
-;; Stop eldoc from writing to echo area
-(setq eldoc-echo-area-use-multiline-p nil)
-
-(setq eglot-extend-to-xref t)
-
-;; Remap major modes so we can use treesitter
-(setq major-mode-remap-alist
- '((java-mode . java-ts-mode)
-   (typescript-mode . typescript-ts-mode)))
-
-(setq treesit-load-name-override-list '((ts "libtree-sitter-typescript" "tree_sitter_typescript")
-                                        (tsx "libtree-sitter-tsx" "tree_sitter_tsx")))
