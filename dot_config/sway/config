@@ -30,7 +30,20 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $font Terminus 8
-set $menu bemenu-run -b --fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --af "#cdd6f4" --ab "#1e1e2e" --fn $font
+set $menu bemenu-run -l 50 up -c --fixed-height -W 0.5 --scrollbar always --counter always \
+ --fn $font \
+--tb '#6272a4'\
+ --tf '#f8f8f2'\
+ --fb '#282a36'\
+ --ff '#f8f8f2'\
+ --nb '#282a36'\
+ --nf '#6272a4'\
+ --hb '#44475a'\
+ --hf '#50fa7b'\
+ --sb '#44475a'\
+ --sf '#50fa7b'\
+ --scb '#282a36'\
+ --scf '#ff79c6'
 
 font $font
 
