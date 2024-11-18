@@ -96,6 +96,7 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #mode,
+#battery,
 #tray {
     padding: 0 10px;
     margin: 5px 1px;
