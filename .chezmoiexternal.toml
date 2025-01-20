@@ -1,7 +1,6 @@
 [".emacs.d"]
     type = "git-repo"
     url = "https://github.com/doomemacs/doomemacs"
-    refreshPeriod = "168h"
 [".local/share/icons/Tango"]
    type = "archive"
    url = "https://github.com/Distrotech/tango-icon-theme/archive/master.tar.gz"
