@@ -104,3 +104,6 @@
 ;; Stop projectile from registering projects
 (setq projectile-track-known-projects-automatically nil)
 (setq projectile-auto-discover nil)
+
+;;
+(setq eglot-ignored-server-capabilities '(:inlayHintProvider))
