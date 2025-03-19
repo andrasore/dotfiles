@@ -57,7 +57,7 @@ font $font
 
 input "type:keyboard" {
     xkb_layout "us,hu(101_qwerty_comma_dead)"
-    xkb_options "caps:escape,grp:win_space_toggle"
+    xkb_options "caps:ctrl_modifier,caps:escape,grp:win_space_toggle"
 }
 
 #
