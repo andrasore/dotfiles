@@ -7,6 +7,9 @@ vim.opt.fileformat = 'unix'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Use system clipboard
+vim.o.clipboard = 'unnamedplus'
+
 -- Fast saving
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<cr>', { noremap = true })
 
@@ -23,6 +26,9 @@ vim.g.netrw_banner = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 -- Keep pwd synced to netrw dir
 vim.g.netrw_keepdir = 0 
+
+-- Set window title
+vim.opt.title = true
 
 -- Command for sudo mode write
 
@@ -228,9 +234,9 @@ vim.api.nvim_set_keymap('n', '<leader>r', ':Telescope oldfiles<Cr>', { noremap =
 vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope live_grep<Cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>*', ':Telescope grep_string<Cr>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<leader>gc', ':Telescope git_commits<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>gb', ':Telescope git_branches<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>gs', ':Telescope git_status<Cr>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>gc', ':Telescope git_commits<Cr>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>gb', ':Telescope git_branches<Cr>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>gs', ':Telescope git_status<Cr>', { noremap = true })
 
 require('telescope').setup({
     defaults = {
@@ -255,7 +261,7 @@ require('telescope').load_extension('fzf')
 
 -- Fugitive
 
-vim.api.nvim_set_keymap('n', '<leader>gg', ':Git<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gg', ':Ge :<Cr>', { noremap = true })
 
 -- Netrw highlight marked files
 vim.cmd([[highlight link netrwMarkFile DiffChange]])
