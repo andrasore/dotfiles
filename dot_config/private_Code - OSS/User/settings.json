@@ -10,8 +10,6 @@
     "editor.occurrencesHighlight": "off",
     "editor.overviewRulerBorder": false,
     "editor.renderLineHighlight": "none",
-    "editor.scrollbar.horizontal": "hidden",
-    "editor.scrollbar.vertical": "hidden",
     "editor.stickyScroll.enabled": false,
     "editor.wordWrap": "on",
     "extensions.experimental.affinity": { "asvetliakov.vscode-neovim": 1 },
@@ -20,7 +18,6 @@
     "terminal.integrated.commandsToSkipShell": [ "language-julia.interrupt" ],
     "terminal.integrated.defaultProfile.linux": "tmux",
     "terminal.integrated.fontSize": 16,
-    "vscode-neovim.neovimClean": true,
     "window.customTitleBarVisibility": "never",
     "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "native",
@@ -35,4 +32,5 @@
     "debugpy.debugJustMyCode": false,
     "julia.enableTelemetry": false,
     "julia.symbolCacheDownload": true,
+    "extensions.ignoreRecommendations": true,
 }

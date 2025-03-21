@@ -14,6 +14,15 @@ vim.api.nvim_set_keymap('n', '<leader>w', ':w<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>Q', ':q!<cr>', { noremap = true })
 
+-- Change PWD automatically
+vim.opt.autochdir = true
+
+-- Netrw
+vim.api.nvim_set_keymap('n', '-', ":e.<cr>", { noremap = true })
+vim.g.netrw_banner = 0
+vim.g.netrw_localcopydircmd = 'cp -r'
+-- Keep pwd synced to netrw dir
+vim.g.netrw_keepdir = 0 
 
 -- Command for sudo mode write
 
@@ -62,6 +71,9 @@ vim.opt.signcolumn = 'number'
 
 -- Use Unix as the standard file type
 vim.opt.fileformats = 'unix,dos,mac'
+
+-- Do not show pressed keys
+vim.opt.showcmd = false
 
 --------------------------------------------------------------------------------
 -- => Files, backups and undo                                                 --
@@ -244,3 +256,6 @@ require('telescope').load_extension('fzf')
 -- Fugitive
 
 vim.api.nvim_set_keymap('n', '<leader>gg', ':Git<Cr>', { noremap = true })
+
+-- Netrw highlight marked files
+vim.cmd([[highlight link netrwMarkFile DiffChange]])
