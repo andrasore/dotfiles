@@ -270,6 +270,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 # Handle application windows
 
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
+for_window [title="Torrent Options"] floating enable
 
 bar {
   swaybar_command waybar

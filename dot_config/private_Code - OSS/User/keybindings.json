@@ -11,5 +11,15 @@
     {
         "key": "alt+f4",
         "command": "-workbench.action.closeWindow"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.showCommands",
+        "when": "inFilesPicker"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpen",
+        "when": "!inFilesPicker"
     }
 ]

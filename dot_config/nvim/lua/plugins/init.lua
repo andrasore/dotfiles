@@ -1,8 +1,19 @@
 return {
-    {"tpope/vim-fugitive"}, 
-    {"nvim-telescope/telescope.nvim",
+    {
+        -- "tpope/vim-fugitive"
+        "NeogitOrg/neogit"
+    }, 
+    {
+        "nvim-telescope/telescope.nvim",
         tag = '0.1.8',
         dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzf-native.nvim" }
     },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+    },
+    {
+        "X3eRo0/dired.nvim",
+        dependencies = "MunifTanjim/nui.nvim",
+    },
 }

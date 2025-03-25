@@ -21,7 +21,7 @@ vim.api.nvim_set_keymap('n', '<leader>Q', ':q!<cr>', { noremap = true })
 vim.opt.autochdir = true
 
 -- Netrw
-vim.api.nvim_set_keymap('n', '-', ":e.<cr>", { noremap = true })
+-- vim.api.nvim_set_keymap('n', '-', ":e.<cr>", { noremap = true })
 vim.g.netrw_banner = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 -- Keep pwd synced to netrw dir
@@ -265,3 +265,10 @@ vim.api.nvim_set_keymap('n', '<leader>gg', ':Ge :<Cr>', { noremap = true })
 
 -- Netrw highlight marked files
 vim.cmd([[highlight link netrwMarkFile DiffChange]])
+
+-- Dired
+require("dired").setup({
+    show_banner = true,
+})
+
+vim.api.nvim_set_keymap('n', '-', ":Dired<cr>", { noremap = true })
