@@ -1,6 +1,7 @@
 {
     "breadcrumbs.enabled": false,
     "chat.commandCenter.enabled": false,
+    "debugpy.debugJustMyCode": false,
     "editor.fontFamily": "'Terminus (TTF)'",
     "editor.fontSize": 16,
     "editor.guides.indentation": false,
@@ -11,15 +12,22 @@
     "editor.renderLineHighlight": "none",
     "editor.stickyScroll.enabled": false,
     "editor.wordWrap": "on",
+    "explorer.confirmDelete": false,
     "extensions.experimental.affinity": { "asvetliakov.vscode-neovim": 1 },
     "extensions.ignoreRecommendations": true,
+    "files.enableTrash": false,
     "git.blame.editorDecoration.enabled": false,
     "git.blame.statusBarItem.enabled": true,
+    "git.confirmSync": false,
+    "git.discardUntrackedChangesToTrash": false,
+    "julia.enableTelemetry": false,
+    "julia.symbolCacheDownload": true,
     "keyboard.dispatch": "keyCode",
     "scm.diffDecorations": "gutter",
-    "terminal.integrated.commandsToSkipShell": [ "language-julia.interrupt" ],
     "terminal.integrated.defaultProfile.linux": "bash",
     "terminal.integrated.fontSize": 16,
+    "terminal.integrated.lineHeight": 1,
+    "terminal.integrated.shellIntegration.enabled": false,
     "vscode-neovim.afterInitConfig": [ "set clipboard=unnamedplus", "let mapleader = ' '", "nnoremap <leader>w :w<CR>" ],
     "vscode-neovim.neovimClean": true,
     "window.confirmBeforeClose": "always",
@@ -32,13 +40,7 @@
     "workbench.colorTheme": "Dracula Theme",
     "workbench.editor.empty.hint": "hidden",
     "workbench.editor.showTabs": "none",
-    // Lang related
-    "debugpy.debugJustMyCode": false,
-    "julia.enableTelemetry": false,
-    "julia.symbolCacheDownload": true,
-    "[search-result]": {
-        "editor.lineNumbers": "relative"
-    },
-    "terminal.integrated.shellIntegration.enabled": false,
-    "git.confirmSync": false,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
 }

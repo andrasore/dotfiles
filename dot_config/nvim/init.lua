@@ -13,8 +13,10 @@ vim.o.clipboard = 'unnamedplus'
 -- Fast saving
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<cr>', { noremap = true })
 
--- Quitting easily
-vim.api.nvim_set_keymap('n', '<leader>q', ':q<cr>', { noremap = true })
+-- Closing buffers easily
+vim.api.nvim_set_keymap('n', '<leader>q', ':bd!<cr>', { noremap = true })
+
+-- Quit
 vim.api.nvim_set_keymap('n', '<leader>Q', ':q!<cr>', { noremap = true })
 
 -- Change PWD automatically
@@ -25,7 +27,7 @@ vim.opt.autochdir = true
 vim.g.netrw_banner = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 -- Keep pwd synced to netrw dir
-vim.g.netrw_keepdir = 0 
+-- vim.g.netrw_keepdir = 0 
 
 -- Set window title
 vim.opt.title = true
@@ -228,43 +230,19 @@ require("config.lazy")
 
 -- Telescope
 
-vim.api.nvim_set_keymap('n', '<leader>p', ':Telescope find_files<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>r', ':Telescope oldfiles<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope live_grep<Cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>*', ':Telescope grep_string<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>p', ':CtrlP<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>,', ':CtrlPBuffer<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>r', ':CtrlPMRUFiles<Cr>', { noremap = true })
 
--- vim.api.nvim_set_keymap('n', '<leader>gc', ':Telescope git_commits<Cr>', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<leader>gb', ':Telescope git_branches<Cr>', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<leader>gs', ':Telescope git_status<Cr>', { noremap = true })
+-- Git
 
-require('telescope').setup({
-    defaults = {
-        layout_strategy = 'bottom_pane',
-        border = false,
-        preview = false,
-        layout_config = {
-            prompt_position = 'bottom'
-        },
-    }
-})
-
-require('telescope').load_extension('fzf')
-
--- Project.nvim
-
--- require('project_nvim').setup({}) 
-
--- require('telescope').load_extension('projects')
-
--- vim.api.nvim_set_keymap('n', '<leader>o', ':Telescope projects<Cr>', { noremap = true })
-
--- Fugitive
-
-vim.api.nvim_set_keymap('n', '<leader>gg', ':Ge :<Cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gg', ':Neogit<Cr>', { noremap = true })
 
 -- Netrw highlight marked files
 vim.cmd([[highlight link netrwMarkFile DiffChange]])
+
+-- CtrlP
+vim.g.ctrlp_user_command = 'fd -t f --format ./{}'
 
 -- Dired
 require("dired").setup({
