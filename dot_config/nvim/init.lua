@@ -40,9 +40,6 @@ vim.opt.title = true
 -- => VIM user interface                                                      --
 --------------------------------------------------------------------------------
 
--- Do not colorscheme me
-vim.cmd.colorscheme('vim')
-
 -- Set 10 lines to the cursor - when moving vertically using j/k
 vim.opt.scrolloff = 4
 
@@ -82,6 +79,17 @@ vim.opt.fileformats = 'unix,dos,mac'
 
 -- Do not show pressed keys
 vim.opt.showcmd = false
+
+vim.opt.hlsearch = true
+
+-- Turn on hlsearch only while searching
+vim.cmd([[
+    augroup vimrc-incsearch-highlight
+      autocmd!
+      autocmd CmdlineEnter /,\? :set hlsearch
+      autocmd CmdlineLeave /,\? :set nohlsearch
+    augroup END
+]])
 
 --------------------------------------------------------------------------------
 -- => Files, backups and undo                                                 --
@@ -227,6 +235,9 @@ command! RemoveTrailing call TrimWhiteSpace()
 --------------------------------------------------------------------------------
 ---
 require("config.lazy")
+
+-- Colorscheme
+vim.cmd.colorscheme('dracula')
 
 -- Telescope
 
