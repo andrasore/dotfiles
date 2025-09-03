@@ -2,4 +2,5 @@
 
 <channel name="xfce4-terminal" version="1.0">
   <property name="font-name" type="string" value="Monospace 10"/>
+  <property name="font-use-system" type="bool" value="true"/>
 </channel>
