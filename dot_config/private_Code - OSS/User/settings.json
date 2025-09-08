@@ -2,8 +2,6 @@
     "breadcrumbs.enabled": false,
     "chat.commandCenter.enabled": false,
     "debugpy.debugJustMyCode": false,
-    "editor.fontFamily": "'Terminus (TTF)'",
-    "editor.fontSize": 16,
     "editor.guides.indentation": false,
     "editor.lineHeight": 1,
     "editor.minimap.enabled": false,
@@ -20,12 +18,9 @@
     "git.blame.statusBarItem.enabled": true,
     "git.confirmSync": false,
     "git.discardUntrackedChangesToTrash": false,
-    "julia.enableTelemetry": false,
-    "julia.symbolCacheDownload": true,
     "keyboard.dispatch": "keyCode",
     "scm.diffDecorations": "gutter",
     "terminal.integrated.defaultProfile.linux": "bash",
-    "terminal.integrated.fontSize": 16,
     "terminal.integrated.lineHeight": 1,
     "terminal.integrated.shellIntegration.enabled": false,
     "vscode-neovim.afterInitConfig": [ "set clipboard=unnamedplus", "let mapleader = ' '", "nnoremap <leader>w :w<CR>" ],
@@ -40,7 +35,4 @@
     "workbench.colorTheme": "Dracula Theme",
     "workbench.editor.empty.hint": "hidden",
     "workbench.editor.showTabs": "none",
-    "terminal.integrated.commandsToSkipShell": [
-        "language-julia.interrupt"
-    ],
 }
