@@ -77,13 +77,15 @@
       <property name="favorites" type="array">
       </property>
       <property name="recent" type="array">
+        <value type="string" value="xfce4-screenshooter.desktop"/>
+        <value type="string" value="thunar.desktop"/>
+        <value type="string" value="gimp.desktop"/>
+        <value type="string" value="code-oss.desktop"/>
         <value type="string" value="xfce4-terminal.desktop"/>
         <value type="string" value="com.usebottles.bottles.desktop"/>
-        <value type="string" value="xfce4-screenshooter.desktop"/>
         <value type="string" value="transmission-gtk.desktop"/>
         <value type="string" value="firefox.desktop"/>
         <value type="string" value="com.valvesoftware.Steam.desktop"/>
-        <value type="string" value="code-oss.desktop"/>
         <value type="string" value="org.mixxx.Mixxx.desktop"/>
       </property>
       <property name="view-mode" type="int" value="1"/>
