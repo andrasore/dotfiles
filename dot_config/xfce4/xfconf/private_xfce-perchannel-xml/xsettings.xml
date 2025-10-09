@@ -2,7 +2,7 @@
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="string" value="Zukitwo"/>
+    <property name="ThemeName" type="string" value="TraditionalOk"/>
     <property name="IconThemeName" type="string" value="elementary"/>
     <property name="DoubleClickTime" type="empty"/>
     <property name="DoubleClickDistance" type="empty"/>
@@ -28,7 +28,7 @@
     <property name="IconSizes" type="empty"/>
     <property name="KeyThemeName" type="empty"/>
     <property name="MenuImages" type="empty"/>
-    <property name="ButtonImages" type="empty"/>
+    <property name="ButtonImages" type="bool" value="true"/>
     <property name="MenuBarAccel" type="empty"/>
     <property name="CursorThemeName" type="string" value="Hackneyed"/>
     <property name="CursorThemeSize" type="empty"/>
@@ -37,6 +37,6 @@
     <property name="TitlebarMiddleClick" type="empty"/>
   </property>
   <property name="Gdk" type="empty">
-    <property name="WindowScalingFactor" type="empty"/>
+    <property name="WindowScalingFactor" type="int" value="1"/>
   </property>
 </channel>

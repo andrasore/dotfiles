@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-terminal" version="1.0">
-  <property name="font-name" type="string" value="Monospace 10"/>
+  <property name="font-name" type="string" value="Retrocide Mono Medium 12"/>
   <property name="font-use-system" type="bool" value="true"/>
   <property name="misc-default-geometry" type="string" value="120x30"/>
   <property name="color-foreground" type="string" value="#ffffff"/>

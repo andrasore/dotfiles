@@ -5,6 +5,6 @@
     <property name="handle-position" type="int" value="104"/>
   </property>
   <property name="window-maximized" type="bool" value="false"/>
-  <property name="window-width" type="int" value="1920"/>
-  <property name="window-height" type="int" value="1031"/>
+  <property name="window-width" type="int" value="1459"/>
+  <property name="window-height" type="int" value="683"/>
 </channel>

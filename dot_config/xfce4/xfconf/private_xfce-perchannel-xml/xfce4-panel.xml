@@ -29,11 +29,13 @@
       <property name="background-style" type="uint" value="0"/>
       <property name="mode" type="uint" value="0"/>
       <property name="border-width" type="uint" value="2"/>
+      <property name="leave-opacity" type="uint" value="100"/>
     </property>
   </property>
   <property name="plugins" type="empty">
     <property name="plugin-2" type="string" value="tasklist">
-      <property name="grouping" type="uint" value="1"/>
+      <property name="grouping" type="bool" value="false"/>
+      <property name="flat-buttons" type="bool" value="false"/>
     </property>
     <property name="plugin-3" type="string" value="separator">
       <property name="expand" type="bool" value="true"/>
@@ -54,6 +56,8 @@
         <value type="string" value="wi-fi network connection “covfefe” active: covfefe (77%)"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="kazam"/>
+        <value type="string" value="Seafile Client"/>
         <value type="string" value="steam"/>
         <value type="string" value="blueman"/>
       </property>
@@ -70,23 +74,23 @@
     <property name="plugin-10" type="string" value="actions"/>
     <property name="plugin-19" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="known-players" type="string" value="firefox"/>
+      <property name="known-players" type="string" value="firefox;spotify"/>
     </property>
     <property name="plugin-20" type="string" value="notification-plugin"/>
     <property name="plugin-21" type="string" value="whiskermenu">
       <property name="favorites" type="array">
       </property>
       <property name="recent" type="array">
+        <value type="string" value="emacs.desktop"/>
+        <value type="string" value="org.torproject.torbrowser-launcher.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
         <value type="string" value="xfce4-screenshooter.desktop"/>
-        <value type="string" value="thunar.desktop"/>
-        <value type="string" value="gimp.desktop"/>
-        <value type="string" value="code-oss.desktop"/>
-        <value type="string" value="xfce4-terminal.desktop"/>
         <value type="string" value="com.usebottles.bottles.desktop"/>
-        <value type="string" value="transmission-gtk.desktop"/>
-        <value type="string" value="firefox.desktop"/>
-        <value type="string" value="com.valvesoftware.Steam.desktop"/>
+        <value type="string" value="thunar.desktop"/>
+        <value type="string" value="xfce-keyboard-settings.desktop"/>
+        <value type="string" value="thunar-bulk-rename.desktop"/>
         <value type="string" value="org.mixxx.Mixxx.desktop"/>
+        <value type="string" value="kazam.desktop"/>
       </property>
       <property name="view-mode" type="int" value="1"/>
       <property name="default-category" type="int" value="1"/>

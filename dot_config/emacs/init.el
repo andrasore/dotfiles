@@ -1,173 +1,48 @@
-;;;;;;;;;;;;;;;;;;;;;;
-;; General Settings ;;
-;;;;;;;;;;;;;;;;;;;;;;
+;;; -*- lexical-binding: t -*-
 
-;; Enable recent file mode
-(recentf-mode 1)
-(setq recentf-max-saved-items 50)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
+ '(custom-enabled-themes '(modus-vivendi-tritanopia))
+ '(make-backup-files nil)
+ '(package-selected-packages '(corfu magit orderless typescript-mode vertico)))
 
-;; Save what you enter into minibuffer prompts
-(setq history-length 50)
-(savehist-mode 1)
+(windmove-default-keybindings)
 
-;; Remember and restore the last cursor location of opened files
-(save-place-mode 1)
+(use-package eglot)
 
-;; Move customization variables to a separate file and load it
-(setq custom-file (locate-user-emacs-file "custom-vars.el"))
-(load custom-file 'noerror 'nomessage)
-
-;; Refresh buffers when the underlying file has changed
-(global-auto-revert-mode 1)
-
-;; Refresh Dired and other buffers
-(setq global-auto-revert-non-file-buffers t)
-
-;; Don't show the splash screen
-(setq inhibit-startup-message t) 
-
-;; Display line numbers in every buffer
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-type 'relative)
-
-;; Trigger window reposition when cursor gets near to top/bottom (like Vim)
-(setq scroll-margin 7)
-
-;; Do not recenter cursor when window is repositioned (like Vim)
-(setq scroll-conservatively 101)
-
-;;;;;;;;;;;;;;;;;;
-;; Gui Settings ;;
-;;;;;;;;;;;;;;;;;;
-
-;; Turn off some unneeded UI elements
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-
-;; Apply the following settings conditionally
-;; Not all Emacs installs have GUI support
-(when (display-graphic-p)
-    (scroll-bar-mode -1)
-    ;; Select theme
-    (load-theme 'deeper-blue)
-    ;; Set font - TODO - check if exists
-    (set-frame-font "Iosevka 12" nil t)
-) 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Package configuration ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Set up package.el to work with MELPA
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
-;; Download use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-;; Evil mode
-;(use-package undo-tree
-  ;:ensure t
-  ;:init (global-undo-tree-mode 1))
-
-(use-package evil
-  :ensure t
-  :init
-  ;; Disable evil-keybindings because of evil-collection. See
-  ;; https://github.com/emacs-evil/evil-collection/issues/60
-  (setq evil-want-keybinding nil)
-  (evil-mode 1)
-  (define-key evil-normal-state-map (kbd "<SPC> q") 'evil-quit)
-  (define-key evil-normal-state-map (kbd "<SPC> w") 'evil-write)
-  (define-key evil-normal-state-map (kbd "<SPC> r") 'consult-buffer)
-  (define-key evil-normal-state-map (kbd "<SPC> b") 'consult-buffer)
-  (define-key evil-normal-state-map (kbd "<SPC> f") 'consult-ripgrep)
-  (define-key evil-normal-state-map (kbd "<SPC> p") 'consult-find)
-  (define-key evil-normal-state-map (kbd "<SPC> x") 'execute-extended-command)
-  (define-key evil-normal-state-map (kbd "<SPC> t") 'vterm)
-  (define-key evil-normal-state-map (kbd "<SPC> gg") 'magit)
-  (define-key evil-normal-state-map (kbd "<SPC> gf") 'magit-file-dispatch)
-  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "-") 'dired-current-file-dir)
-  :custom
-  (evil-want-C-u-scroll t)
-  ;(evil-undo-system 'undo-tree)
-  )
-
-(use-package evil-collection
-  :ensure t
-  :after (:all evil)
-  :init (evil-collection-init))
-
-;; doom-modeline for modeline
-
-(use-package doom-modeline
-  :ensure t
-  :init
-  (doom-modeline-mode 1)
-  (setq doom-modeline-height 14))
-
-;; Install doom themes
-
-(use-package doom-themes
+(use-package typescript-mode
   :ensure t)
 
-;; Company for in-buffer completion
-(use-package company
-  :ensure t
-  :config
-  (global-company-mode))
+(use-package vertico
+  :config (vertico-mode)
+  :ensure t)
 
-;; Selectrum for minibuffer selection
-(use-package selectrum
-  :ensure t
-  :init
-  (selectrum-mode +1)
-  )
+(use-package corfu
+  :config (global-corfu-mode)
+  :ensure t)
 
-(use-package selectrum-prescient
-  :ensure t
-  :init
-  (selectrum-prescient-mode +1)
-  (prescient-persist-mode +1)
-  )
-
-;; consult.el for additional completion commands
-(use-package consult
-  :ensure t
-  :init (setq consult-find-args "find . -not ( -wholename */.* -prune ) -not ( -wholename */node_modules -prune )"))
-
-;; Magit for git
 (use-package magit
+  :defer t
   :ensure t)
 
-;; Vterm for fast terminal emulation
-(use-package vterm
-  :ensure t)
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion))))
+  (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
-;; Projectile for managing projects
-;(use-package projectile
-  ;:ensure t
-  ;:init
-  ;(projectile-mode 1))
+(keymap-global-set "C-c r" 'recentf)
+(keymap-global-set "C-c e" 'eglot)
+(keymap-global-set "C-c t" 'term)
 
-;;;;;;;;;;;;;;;;;;;;;;
-;; Helper functions ;;
-;;;;;;;;;;;;;;;;;;;;;;
-
-;; Helper function for Evil mode
-(defun dired-current-file-dir ()
-  "Opens the directory of the current buffer in dired"
-  (interactive)
-  (dired default-directory))
-
-;; Helper function for copying under WSL/Windows
-(defun wsl-copy (start end)
-  (interactive "r")
-  (shell-command-on-region start end "clip.exe"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
