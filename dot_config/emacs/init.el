@@ -11,10 +11,11 @@
   (custom-enabled-themes '(ef-dark))
   (fill-column 80)
   (indent-tabs-mode nil)
+ ;; FIXME
+ ;; (tab-always-indent complete)
   (make-backup-files nil)
   (org-startup-indented t)
   (scroll-bar-mode nil)
-  (tab-always-indent complete)
   (tab-width 4)
   (tool-bar-mode nil))
 
@@ -62,6 +63,10 @@
 (keymap-global-set "C-c e" 'eglot)
 ;; We have project eshell w/ "C-x p e"
 ;; (keymap-global-set "C-c t" 'eshell)
+
+;; FIXME move this to proper place
+(custom-set-variables
+ '(tab-always-indent 'complete nil nil "Customized with use-package emacs"))
 
 ;; Set default font w/ custom-set-faces (it will overwrite the one in custom.el)
 (custom-set-faces
