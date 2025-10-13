@@ -49,5 +49,6 @@ if [ -d "$xinitdir"/xinitrc.d ] ; then
 	unset f
 fi
 
-setxkbmap -layout us,hu -variant ,qwerty -option 'grp:win_space_toggle' -option 'caps:escape' &
+#setxkbmap -layout us,hu -variant ,qwerty -option 'grp:win_space_toggle' -option 'caps:escape' &
+setxkbmap -layout us,hu -variant ,qwerty -option 'grp:win_space_toggle' -option 'ctrl:nocaps' &
 exec startxfce4

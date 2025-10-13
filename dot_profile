@@ -20,29 +20,24 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
 if [ -d "$HOME/.npm-global/bin" ] ; then
     PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
-if [ -e /home/andras/.nix-profile/etc/profile.d/nix.sh ]; then . /home/andras/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
 # Force Wayland for Firefox
-export MOZ_ENABLE_WAYLAND=1
+# export MOZ_ENABLE_WAYLAND=1
 
 # Pictures folder for screenshots
-export GRIM_DEFAULT_DIR="/home/andras/Pictures"
+# export GRIM_DEFAULT_DIR="/home/andras/Pictures"
 
 # Waybar tray requires this
-export XDG_CURRENT_DESKTOP=sway
+# export XDG_CURRENT_DESKTOP=sway
 
 # Settings for Idea
-export _JAVA_AWT_WM_NONREPARENTING=1
-export JAVA_OPTS=-Dawt.toolkit.name=WLToolkit
+# export _JAVA_AWT_WM_NONREPARENTING=1
+# export JAVA_OPTS=-Dawt.toolkit.name=WLToolkit
 
 if [ -z $DISPLAY  ] && [ "$(tty)" = "/dev/tty1"  ]; then
-      exec sway
+      #exec sway
+      exec startx
 fi
