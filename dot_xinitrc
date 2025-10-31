@@ -51,4 +51,5 @@ fi
 
 #setxkbmap -layout us,hu -variant ,qwerty -option 'grp:win_space_toggle' -option 'caps:escape' &
 setxkbmap -layout us,hu -variant ,qwerty -option 'grp:win_space_toggle' -option 'ctrl:nocaps' &
+redshift -l `curl -s https://ipapi.co/json | sed -n 's/.*"latitude":[[:space:]]*\([0-9.-]*\).*/\1/p; s/.*"longitude":[[:space:]]*\([0-9.-]*\).*/\1/p' | paste -sd:` &
 exec startxfce4
