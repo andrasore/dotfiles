@@ -23,8 +23,6 @@
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
   (create-lockfiles nil)
- ;; FIXME
- ;; (tab-always-indent complete)
   (make-backup-files nil)
   (org-startup-indented t)
   (scroll-bar-mode nil)
@@ -75,10 +73,32 @@
   (completion-category-overrides '((file (styles partial-completion))))
   (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
+;; Enable rich annotations using the Marginalia package
+(use-package marginalia
+  :ensure t
+  ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
+  ;; available in the *Completions* buffer, add it to the
+  ;; `completion-list-mode-map'.
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+
+  ;; The :init section is always executed.
+  :init
+
+  ;; Marginalia must be activated in the :init section of use-package such that
+  ;; the mode gets enabled right away. Note that this forces loading the
+  ;; package.
+  (marginalia-mode))
+
+;; Enable auto-fill-mode for org-mode for wrapping long lines
+(add-hook 'org-mode-hook #'auto-fill-mode)
+
 ;; Remap annoying set-fill-column to find-file
 (keymap-global-set "C-x f" 'find-file)
 ;; Remap annoying list-directory to dired
 (keymap-global-set "C-x C-d" 'dired)
+;; Use ibuffer instead of buffer menu
+(keymap-global-set "C-x C-b" 'ibuffer)
 
 (keymap-global-set "C-c r" 'recentf)
 (keymap-global-set "C-c E" 'eglot)
