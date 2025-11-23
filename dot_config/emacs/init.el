@@ -1,5 +1,9 @@
 ;;; -*- lexical-binding: t -*-
 
+;(require 'package)
+;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;(package-initialize)
+
 (setq custom-file "~/.config/emacs/custom.el")
 
 ;; FIXME move this to proper place
@@ -8,7 +12,7 @@
 
 ;; FIXME Set default font w/ custom-set-faces
 (custom-set-faces
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#d0d0d0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight medium :height 120 :width normal :foundry "CYEL" :family "Iosevka")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#d0d0d0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "CYEL" :family "Iosevka")))))
 
 (load custom-file)
 
@@ -90,6 +94,11 @@
   ;; package.
   (marginalia-mode))
 
+(use-package eat
+  :ensure t
+  :custom
+ (eat-kill-buffer-on-exit t))
+
 ;; Enable auto-fill-mode for org-mode for wrapping long lines
 (add-hook 'org-mode-hook #'auto-fill-mode)
 
@@ -100,7 +109,8 @@
 ;; Use ibuffer instead of buffer menu
 (keymap-global-set "C-x C-b" 'ibuffer)
 
+;; Custom mappings
 (keymap-global-set "C-c r" 'recentf)
 (keymap-global-set "C-c E" 'eglot)
-(keymap-global-set "C-c e" (lambda () (interactive) (eshell "")))
+(keymap-global-set "C-c e" (lambda () (interactive) (eat "/bin/bash" "")))
  

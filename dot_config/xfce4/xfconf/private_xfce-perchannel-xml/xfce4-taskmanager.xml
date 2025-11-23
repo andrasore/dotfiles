@@ -4,7 +4,11 @@
   <property name="interface" type="empty">
     <property name="handle-position" type="int" value="104"/>
   </property>
-  <property name="window-maximized" type="bool" value="false"/>
+  <property name="window-maximized" type="bool" value="true"/>
   <property name="window-width" type="int" value="1459"/>
   <property name="window-height" type="int" value="683"/>
+  <property name="columns" type="empty">
+    <property name="sort-type" type="uint" value="0"/>
+    <property name="sort-id" type="uint" value="9"/>
+  </property>
 </channel>

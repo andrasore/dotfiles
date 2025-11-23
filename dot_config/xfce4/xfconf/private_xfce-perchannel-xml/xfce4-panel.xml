@@ -21,7 +21,6 @@
         <value type="int" value="7"/>
         <value type="int" value="8"/>
         <value type="int" value="9"/>
-        <value type="int" value="10"/>
         <value type="int" value="19"/>
         <value type="int" value="20"/>
       </property>
@@ -56,6 +55,7 @@
         <value type="string" value="wi-fi network connection “covfefe” active: covfefe (77%)"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="proton-vpn-app"/>
         <value type="string" value="kazam"/>
         <value type="string" value="Seafile Client"/>
         <value type="string" value="steam"/>
@@ -71,7 +71,6 @@
     <property name="plugin-9" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-10" type="string" value="actions"/>
     <property name="plugin-19" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="known-players" type="string" value="firefox;spotify"/>
@@ -81,19 +80,30 @@
       <property name="favorites" type="array">
       </property>
       <property name="recent" type="array">
-        <value type="string" value="emacs.desktop"/>
-        <value type="string" value="org.torproject.torbrowser-launcher.desktop"/>
-        <value type="string" value="xfce4-terminal-emulator.desktop"/>
-        <value type="string" value="xfce4-screenshooter.desktop"/>
-        <value type="string" value="com.usebottles.bottles.desktop"/>
-        <value type="string" value="thunar.desktop"/>
-        <value type="string" value="xfce-keyboard-settings.desktop"/>
-        <value type="string" value="thunar-bulk-rename.desktop"/>
-        <value type="string" value="org.mixxx.Mixxx.desktop"/>
+        <value type="string" value="xfce-ui-settings.desktop"/>
         <value type="string" value="kazam.desktop"/>
+        <value type="string" value="xfce4-screenshooter.desktop"/>
+        <value type="string" value="org.signal.Signal.desktop"/>
+        <value type="string" value="org.xfce.Parole.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+        <value type="string" value="com.usebottles.bottles.desktop"/>
+        <value type="string" value="emacs.desktop"/>
+        <value type="string" value="thunar.desktop"/>
+        <value type="string" value="org.torproject.torbrowser-launcher.desktop"/>
       </property>
       <property name="view-mode" type="int" value="1"/>
       <property name="default-category" type="int" value="1"/>
+      <property name="launcher-show-name" type="bool" value="true"/>
+      <property name="position-categories-horizontal" type="bool" value="false"/>
+      <property name="position-profile-alternate" type="bool" value="false"/>
+      <property name="position-commands-alternate" type="bool" value="false"/>
+      <property name="profile-shape" type="int" value="0"/>
+      <property name="button-single-row" type="bool" value="false"/>
+      <property name="launcher-show-description" type="bool" value="true"/>
+      <property name="menu-width" type="int" value="450"/>
+      <property name="show-command-restart" type="bool" value="false"/>
+      <property name="show-button-title" type="bool" value="false"/>
+      <property name="show-button-icon" type="bool" value="true"/>
     </property>
   </property>
 </channel>
