@@ -12,7 +12,7 @@
 
 ;; FIXME Set default font w/ custom-set-faces
 (custom-set-faces
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#d0d0d0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "CYEL" :family "Iosevka")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#d0d0d0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "CYEL" :family "DejaVu Sans Mono")))))
 
 (load custom-file)
 
@@ -40,6 +40,14 @@
   :ensure t)
 
 (use-package typescript-mode
+  :defer t
+  :ensure t)
+
+(use-package markdown-mode
+  :defer t
+  :ensure t)
+
+(use-package yaml-mode
   :defer t
   :ensure t)
 
@@ -95,6 +103,7 @@
   (marginalia-mode))
 
 (use-package eat
+  :defer t
   :ensure t
   :custom
  (eat-kill-buffer-on-exit t))
@@ -108,9 +117,31 @@
 (keymap-global-set "C-x C-d" 'dired)
 ;; Use ibuffer instead of buffer menu
 (keymap-global-set "C-x C-b" 'ibuffer)
+;; Extra project mappings
+(keymap-global-set "C-x p R" 'project-remember-projects-under)
+(keymap-global-set "C-x p F" 'project-forget-zombie-projects)
 
 ;; Custom mappings
 (keymap-global-set "C-c r" 'recentf)
 (keymap-global-set "C-c E" 'eglot)
 (keymap-global-set "C-c e" (lambda () (interactive) (eat "/bin/bash" "")))
- 
+
+
+;; Advice for kill-region and kill-ring-save
+;; https://emacs.stackexchange.com/questions/2347/kill-or-copy-current-line-with-minimal-keystrokes
+(defun slick-cut (beg end)
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (list (line-beginning-position) (line-beginning-position 2)))))
+
+(advice-add 'kill-region :before #'slick-cut)
+
+(defun slick-copy (beg end)
+  (interactive
+   (if mark-active
+       (list (region-beginning) (region-end))
+     (message "Copied line")
+     (list (line-beginning-position) (line-beginning-position 2)))))
+
+(advice-add 'kill-ring-save :before #'slick-copy)
