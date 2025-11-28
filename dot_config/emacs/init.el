@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-
+ 
 ;(require 'package)
 ;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;(package-initialize)
@@ -10,10 +10,8 @@
 (custom-set-variables
  '(tab-always-indent 'complete nil nil "Customized with use-package emacs"))
 
-;; FIXME Set default font w/ custom-set-faces
 (custom-set-faces
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#d0d0d0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "CYEL" :family "DejaVu Sans Mono")))))
-
+ '(default ((t ( :height 105 :width normal :family "DejaVu Sans Mono")))))
 (load custom-file)
 
 (windmove-default-keybindings)
@@ -22,7 +20,7 @@
 (use-package emacs
   :custom
   (auto-save-default nil)
-  (custom-enabled-themes '(ef-dark))
+  (custom-enabled-themes '(ef-trio-dark))
   (fill-column 80)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
@@ -32,6 +30,7 @@
   (scroll-bar-mode nil)
   (tab-width 4)
   (recentf-max-saved-items 200)
+  (menu-bar-mode nil)
   (tool-bar-mode nil)
   (use-short-answers t))
 
@@ -106,7 +105,9 @@
   :defer t
   :ensure t
   :custom
- (eat-kill-buffer-on-exit t))
+  (eat-kill-buffer-on-exit t)
+  ;; This is bc on ssh connections we cannot load terminfo
+  (eat-term-name "xterm-256color"))
 
 ;; Enable auto-fill-mode for org-mode for wrapping long lines
 (add-hook 'org-mode-hook #'auto-fill-mode)
@@ -125,7 +126,7 @@
 (keymap-global-set "C-c r" 'recentf)
 (keymap-global-set "C-c E" 'eglot)
 (keymap-global-set "C-c e" (lambda () (interactive) (eat "/bin/bash" "")))
-
+(keymap-global-set "C-c u" 'browse-url-xdg-open)
 
 ;; Advice for kill-region and kill-ring-save
 ;; https://emacs.stackexchange.com/questions/2347/kill-or-copy-current-line-with-minimal-keystrokes
@@ -141,7 +142,24 @@
   (interactive
    (if mark-active
        (list (region-beginning) (region-end))
-     (message "Copied line")
      (list (line-beginning-position) (line-beginning-position 2)))))
 
 (advice-add 'kill-ring-save :before #'slick-copy)
+
+;; Recursive search
+;; https://www.reddit.com/r/emacs/comments/skd03i/comment/hvk9pkt/
+;; TODO this does not work on remote hosts
+(let ((find-files-program (cond
+                           ((executable-find "rg") '("rg" "--color=never" "--files"))
+                           ((executable-find "find") '("find" "-type" "f")))))
+(defun find-file-rec ()
+  "Find a file in the current working directory recursively."
+  (interactive)
+  (find-file
+   (completing-read "Find file: "
+                    (apply #'process-lines find-files-program)))))
+
+;; Set up some keybinds for it
+(keymap-global-set "C-c f" 'find-file-rec)
+(eval-after-load "dired" '(progn
+  (define-key dired-mode-map (kbd "f") 'find-file-rec) ))
