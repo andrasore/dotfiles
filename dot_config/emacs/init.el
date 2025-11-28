@@ -20,7 +20,7 @@
 (use-package emacs
   :custom
   (auto-save-default nil)
-  (custom-enabled-themes '(ef-dream)
+  (custom-enabled-themes '(ef-dream))
   (fill-column 80)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
