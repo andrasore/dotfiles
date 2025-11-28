@@ -11,7 +11,7 @@
  '(tab-always-indent 'complete nil nil "Customized with use-package emacs"))
 
 (custom-set-faces
- '(default ((t ( :height 105 :width normal :family "DejaVu Sans Mono")))))
+ '(default ((t ( :height 100 :width normal :family "DejaVu Sans Mono")))))
 (load custom-file)
 
 (windmove-default-keybindings)
@@ -20,7 +20,7 @@
 (use-package emacs
   :custom
   (auto-save-default nil)
-  (custom-enabled-themes '(ef-trio-dark))
+  (custom-enabled-themes '(ef-dream)
   (fill-column 80)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
@@ -92,10 +92,8 @@
   ;; `completion-list-mode-map'.
   :bind (:map minibuffer-local-map
          ("M-A" . marginalia-cycle))
-
   ;; The :init section is always executed.
   :init
-
   ;; Marginalia must be activated in the :init section of use-package such that
   ;; the mode gets enabled right away. Note that this forces loading the
   ;; package.
@@ -118,7 +116,9 @@
 (keymap-global-set "C-x C-d" 'dired)
 ;; Use ibuffer instead of buffer menu
 (keymap-global-set "C-x C-b" 'ibuffer)
-;; Extra project mappings
+;; kill-current-buffer instead of kill-buffer
+(keymap-global-set "C-x k" 'kill-current-buffer)
+;; extra project mappings
 (keymap-global-set "C-x p R" 'project-remember-projects-under)
 (keymap-global-set "C-x p F" 'project-forget-zombie-projects)
 
