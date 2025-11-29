@@ -1,8 +1,0 @@
-[".emacs.d"]
-    type = "git-repo"
-    url = "https://github.com/doomemacs/doomemacs"
-[".local/share/icons/Tango"]
-   type = "archive"
-   url = "https://github.com/Distrotech/tango-icon-theme/archive/master.tar.gz"
-   exact = true
-   stripComponents = 1
