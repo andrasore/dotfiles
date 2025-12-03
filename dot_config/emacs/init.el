@@ -1,3 +1,4 @@
+
 ;;; -*- lexical-binding: t -*-
  
 ;(require 'package)
@@ -26,10 +27,13 @@
   (inhibit-startup-screen t)
   (create-lockfiles nil)
   (make-backup-files nil)
+  (dired-listing-switches "-alFh")
+  (dired-create-destination-dirs 'ask)
   (org-startup-indented t)
   (scroll-bar-mode nil)
   (tab-width 4)
   (recentf-max-saved-items 200)
+  (ring-bell-function 'ignore)
   (menu-bar-mode nil)
   (tool-bar-mode nil)
   (use-short-answers t))
@@ -104,6 +108,7 @@
   :ensure t
   :custom
   (eat-kill-buffer-on-exit t)
+  (eat-term-shell-integration-directory "/home/andras/.config/emacs/eat-integration")
   ;; This is bc on ssh connections we cannot load terminfo
   (eat-term-name "xterm-256color"))
 
