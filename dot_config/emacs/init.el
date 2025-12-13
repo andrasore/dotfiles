@@ -1,4 +1,4 @@
-
+
 ;;; -*- lexical-binding: t -*-
  
 ;(require 'package)
@@ -15,7 +15,6 @@
  '(default ((t ( :height 100 :width normal :family "DejaVu Sans Mono")))))
 (load custom-file)
 
-(windmove-default-keybindings)
 (which-key-mode)
 
 (use-package emacs
@@ -108,17 +107,17 @@
   :ensure t
   :custom
   (eat-kill-buffer-on-exit t)
+  ;; This is bc on ssh connections we cannot load eat terminfo so we set TERM to a sane value
+  (eat-term-name "xterm-256color")
+  ;; TODO This contains our custom integration script for bash which does not depend on TERM
   (eat-term-shell-integration-directory "/home/andras/.config/emacs/eat-integration")
-  ;; This is bc on ssh connections we cannot load terminfo
-  (eat-term-name "xterm-256color"))
+  :config (load "~/.config/emacs/eat-fix.el"))
 
 ;; Enable auto-fill-mode for org-mode for wrapping long lines
-(add-hook 'org-mode-hook #'auto-fill-mode)
+(add-hook 'org-mode-hook #'refill-mode)
 
-;; Remap annoying set-fill-column to find-file
-(keymap-global-set "C-x f" 'find-file)
-;; Remap annoying list-directory to dired
-(keymap-global-set "C-x C-d" 'dired)
+;; Remap set-fill-column to ffap-menu
+(keymap-global-set "C-x f" 'ffap-menu)
 ;; Use ibuffer instead of buffer menu
 (keymap-global-set "C-x C-b" 'ibuffer)
 ;; kill-current-buffer instead of kill-buffer
@@ -126,11 +125,15 @@
 ;; extra project mappings
 (keymap-global-set "C-x p R" 'project-remember-projects-under)
 (keymap-global-set "C-x p F" 'project-forget-zombie-projects)
+;; Easier buffer navigation
+(keymap-global-set "C-," 'previous-buffer)
+(keymap-global-set "C-." 'next-buffer)
 
 ;; Custom mappings
 (keymap-global-set "C-c r" 'recentf)
 (keymap-global-set "C-c E" 'eglot)
-(keymap-global-set "C-c e" (lambda () (interactive) (eat "/bin/bash" "")))
+(keymap-global-set "C-c t" (lambda () (interactive) (eat "/bin/bash" "")))
+(keymap-global-set "C-c e" (lambda () (interactive) (eshell "")))
 (keymap-global-set "C-c u" 'browse-url-xdg-open)
 
 ;; Advice for kill-region and kill-ring-save
@@ -168,3 +171,12 @@
 (keymap-global-set "C-c f" 'find-file-rec)
 (eval-after-load "dired" '(progn
   (define-key dired-mode-map (kbd "f") 'find-file-rec) ))
+
+
+;; ffap-menu fix - TODO remove when using emacs 31
+;; https://github.com/minad/vertico?tab=readme-ov-file#ffap-menu-fixed-on-emacs-31
+(advice-add #'ffap-menu-ask :around
+            (lambda (&rest args)
+              (cl-letf (((symbol-function #'minibuffer-completion-help)
+                         #'ignore))
+                (apply args))))
