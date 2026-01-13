@@ -2,7 +2,7 @@
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="string" value="YaruOk"/>
+    <property name="ThemeName" type="string" value="BlueMenta"/>
     <property name="IconThemeName" type="string" value="Newaita-replacement"/>
     <property name="DoubleClickTime" type="empty"/>
     <property name="DoubleClickDistance" type="empty"/>
