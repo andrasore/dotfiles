@@ -1,9 +1,8 @@
-
 ;;; -*- lexical-binding: t -*-
  
-;(require 'package)
-;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;(package-initialize)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 (setq custom-file "~/.config/emacs/custom.el")
 
@@ -85,6 +84,7 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles partial-completion))))
+  (completion-category-defaults nil)
   (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
 ;; Enable rich annotations using the Marginalia package
@@ -111,7 +111,34 @@
   (eat-term-name "xterm-256color")
   ;; TODO This contains our custom integration script for bash which does not depend on TERM
   (eat-term-shell-integration-directory "/home/andras/.config/emacs/eat-integration")
-  :config (load "~/.config/emacs/eat-fix.el"))
+  :config
+  (load "~/.config/emacs/eat-fix.el")
+  (eat-eshell-mode))
+
+(use-package direnv
+  :ensure t
+  :init
+  (direnv-mode))
+
+(use-package treesit-auto
+  :ensure t
+  :config
+  ;; These are required because there is no tsx-mode installed
+  ;; so treesit-auto cannot upgrade it to tsx-ts-mode
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . tsx-ts-mode))
+  (global-treesit-auto-mode))
+
+
+(use-package consult
+  :ensure t
+  :init
+  (recentf-mode)
+  :custom
+  (consult-preview-key "M-.")
+  :bind (
+         ("C-x b" . consult-buffer)
+         ("C-c r" . consult-recent-file)))
 
 ;; Enable auto-fill-mode for org-mode for wrapping long lines
 (add-hook 'org-mode-hook #'refill-mode)
@@ -130,7 +157,6 @@
 (keymap-global-set "C-." 'next-buffer)
 
 ;; Custom mappings
-(keymap-global-set "C-c r" 'recentf)
 (keymap-global-set "C-c E" 'eglot)
 (keymap-global-set "C-c t" (lambda () (interactive) (eat "/bin/bash" "")))
 (keymap-global-set "C-c e" (lambda () (interactive) (eshell "")))
@@ -153,24 +179,6 @@
      (list (line-beginning-position) (line-beginning-position 2)))))
 
 (advice-add 'kill-ring-save :before #'slick-copy)
-
-;; Recursive search
-;; https://www.reddit.com/r/emacs/comments/skd03i/comment/hvk9pkt/
-;; TODO this does not work on remote hosts
-(let ((find-files-program (cond
-                           ((executable-find "rg") '("rg" "--color=never" "--files"))
-                           ((executable-find "find") '("find" "-type" "f")))))
-(defun find-file-rec ()
-  "Find a file in the current working directory recursively."
-  (interactive)
-  (find-file
-   (completing-read "Find file: "
-                    (apply #'process-lines find-files-program)))))
-
-;; Set up some keybinds for it
-(keymap-global-set "C-c f" 'find-file-rec)
-(eval-after-load "dired" '(progn
-  (define-key dired-mode-map (kbd "f") 'find-file-rec) ))
 
 
 ;; ffap-menu fix - TODO remove when using emacs 31
