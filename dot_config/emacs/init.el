@@ -19,7 +19,7 @@
 (use-package emacs
   :custom
   (auto-save-default nil)
-  (custom-enabled-themes '(ef-dream))
+  (custom-enabled-themes '(ef-winter))
   (fill-column 80)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
@@ -102,18 +102,11 @@
   ;; package.
   (marginalia-mode))
 
-(use-package eat
+(use-package vterm
   :defer t
   :ensure t
-  :custom
-  (eat-kill-buffer-on-exit t)
-  ;; This is bc on ssh connections we cannot load eat terminfo so we set TERM to a sane value
-  (eat-term-name "xterm-256color")
-  ;; TODO This contains our custom integration script for bash which does not depend on TERM
-  (eat-term-shell-integration-directory "/home/andras/.config/emacs/eat-integration")
   :config
-  (load "~/.config/emacs/eat-fix.el")
-  (eat-eshell-mode))
+  (eshell-vterm-mode))
 
 (use-package direnv
   :ensure t
@@ -138,13 +131,13 @@
   (consult-preview-key "M-.")
   :bind (
          ("C-x b" . consult-buffer)
-         ("C-c r" . consult-recent-file)))
+         ("C-c r" . consult-recent-file)
+         ("C-c f" . consult-find)
+         ("C-c g" . consult-ripgrep)))
 
 ;; Enable auto-fill-mode for org-mode for wrapping long lines
 (add-hook 'org-mode-hook #'refill-mode)
 
-;; Remap set-fill-column to ffap-menu
-(keymap-global-set "C-x f" 'ffap-menu)
 ;; Use ibuffer instead of buffer menu
 (keymap-global-set "C-x C-b" 'ibuffer)
 ;; kill-current-buffer instead of kill-buffer
@@ -158,9 +151,12 @@
 
 ;; Custom mappings
 (keymap-global-set "C-c E" 'eglot)
-(keymap-global-set "C-c t" (lambda () (interactive) (eat "/bin/bash" "")))
+(keymap-global-set "C-c t" (lambda () (interactive)
+                             (setq current-prefix-arg '(nil))
+                             (call-interactively 'vterm)))
 (keymap-global-set "C-c e" (lambda () (interactive) (eshell "")))
 (keymap-global-set "C-c u" 'browse-url-xdg-open)
+(keymap-global-set "C-c l" 'ffap-menu)
 
 ;; Advice for kill-region and kill-ring-save
 ;; https://emacs.stackexchange.com/questions/2347/kill-or-copy-current-line-with-minimal-keystrokes
