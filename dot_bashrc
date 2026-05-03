@@ -31,6 +31,8 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # Ignore duplicate values and values starting with space
 export HISTCONTROL=ignoreboth
 
+# Disable software flow control, aka Ctrl-S / Ctrl-Q
+stty -ixon
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
