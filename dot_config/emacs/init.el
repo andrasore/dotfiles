@@ -36,6 +36,11 @@
   (tool-bar-mode nil)
   (use-short-answers t))
 
+(use-package eglot
+  :defer t
+  :custom
+  (project-vc-extra-root-markers '("package.json")))
+
 (use-package treemacs
   :defer t
   :ensure t)
@@ -50,9 +55,6 @@
 
 (use-package yaml-mode
   :defer t
-  :ensure t)
-
-(use-package ef-themes
   :ensure t)
 
 (use-package vertico
@@ -126,8 +128,9 @@
   ;; so treesit-auto cannot upgrade it to tsx-ts-mode
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . tsx-ts-mode))
+  ;; TODO this is not entirely correct
+  (add-to-list 'auto-mode-alist '("Dockerfile" . dockerfile-ts-mode))
   (global-treesit-auto-mode))
-
 
 (use-package consult
   :ensure t
@@ -143,7 +146,7 @@
 
 (use-package claude-code-ide
   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-c" . claude-code-ide-menu) ; Set your favorite keybinding
+  :bind ("C-c c" . claude-code-ide-menu) ; Set your favorite keybinding
   :config
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
