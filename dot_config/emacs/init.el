@@ -201,3 +201,22 @@
               (cl-letf (((symbol-function #'minibuffer-completion-help)
                          #'ignore))
                 (apply args))))
+
+
+;; Monorepo fix for Eglot
+(defvar eglot-project-roots '("package.json")
+  "List of files/directories that indicate an Eglot project root.")
+
+(defun my/eglot-project-find-function (dir)
+  "Find project root for Eglot only, using `eglot-project-roots'.
+Returns nil if not called from an Eglot context or no root marker is found."
+  (when (bound-and-true-p eglot-lsp-context)
+    (let ((root (locate-dominating-file dir
+                  (lambda (d)
+                    (seq-some (lambda (marker)
+                                (file-exists-p (expand-file-name marker d)))
+                              eglot-project-roots)))))
+      (when root
+        (cons 'transient root)))))
+
+(add-hook 'project-find-functions #'my/eglot-project-find-function)
