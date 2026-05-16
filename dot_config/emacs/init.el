@@ -36,10 +36,10 @@
   (tool-bar-mode nil)
   (use-short-answers t))
 
-(use-package eglot
-  :defer t
-  :custom
-  (project-vc-extra-root-markers '("package.json")))
+;; (use-package eglot
+;;   :defer t
+;;   :custom
+;;   (project-vc-extra-root-markers '("package.json")))
 
 (use-package treemacs
   :defer t
@@ -219,4 +219,10 @@ Returns nil if not called from an Eglot context or no root marker is found."
       (when root
         (cons 'transient root)))))
 
-(add-hook 'project-find-functions #'my/eglot-project-find-function)
+;; https://emacs.stackexchange.com/a/64263
+(use-package project
+  ;; Cannot use :hook because 'project-find-functions does not end in -hook
+  ;; Cannot use :init (must use :config) because otherwise
+  ;; project-find-functions is not yet initialized.
+  :config
+(add-hook 'project-find-functions #'my/eglot-project-find-function))
