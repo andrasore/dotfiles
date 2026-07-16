@@ -36,10 +36,8 @@
   (tool-bar-mode nil)
   (use-short-answers t))
 
-;; (use-package eglot
-;;   :defer t
-;;   :custom
-;;   (project-vc-extra-root-markers '("package.json")))
+(use-package ef-themes
+  :ensure t)
 
 (use-package treemacs
   :defer t
@@ -72,7 +70,18 @@
 
 (use-package magit
   :defer t
-  :ensure t)
+  :ensure t
+  :custom
+  (magit-save-repository-buffers 'dontask)
+  (magit-process-apply-ansi-colors t))
+
+(use-package org
+  :config
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  :bind
+  (("C-c l" . org-store-link)
+  ("C-c a" . org-agenda)
+  ("C-c c" . org-capture)))
 
 (use-package undo-tree
   :config
@@ -130,6 +139,8 @@
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . tsx-ts-mode))
   ;; TODO this is not entirely correct
   (add-to-list 'auto-mode-alist '("Dockerfile" . dockerfile-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsonc\\'" . json-ts-mode))
+
   (global-treesit-auto-mode))
 
 (use-package consult
@@ -146,9 +157,11 @@
 
 (use-package claude-code-ide
   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c c" . claude-code-ide-menu) ; Set your favorite keybinding
+  :bind ("C-c C" . claude-code-ide-menu)
   :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+  (claude-code-ide-emacs-tools-setup)
+  :custom
+  (claude-code-ide-use-side-window nil)) 
 
 ;; Enable auto-fill-mode for org-mode for wrapping long lines
 (add-hook 'org-mode-hook #'auto-fill-mode)
@@ -164,14 +177,17 @@
 (keymap-global-set "C-," 'previous-buffer)
 (keymap-global-set "C-." 'next-buffer)
 
+;; Remap these for better ergonomics
+(keymap-global-set "C-x D" 'dired) ; replaces list-directory
+(keymap-global-set "C-x f" 'find-file) ; replaces set-fill-column
+
 ;; Custom mappings
 (keymap-global-set "C-c E" 'eglot)
 (keymap-global-set "C-c t" (lambda () (interactive)
                              (setq current-prefix-arg '(nil))
                              (call-interactively 'vterm)))
 (keymap-global-set "C-c e" (lambda () (interactive) (eshell "")))
-(keymap-global-set "C-c u" 'browse-url-xdg-open)
-(keymap-global-set "C-c l" 'ffap-menu)
+(keymap-global-set "C-c u" 'ffap-menu)
 (keymap-global-set "C-c T" 'treemacs)
 
 
@@ -226,3 +242,11 @@ Returns nil if not called from an Eglot context or no root marker is found."
   ;; project-find-functions is not yet initialized.
   :config
 (add-hook 'project-find-functions #'my/eglot-project-find-function))
+
+;; Window split only when frame is fullscreen
+(defun my/split-window-maybe (window)
+  "Split WINDOW only when frame is fullscreen or maximized."
+  (when (memq (frame-parameter nil 'fullscreen) '(fullscreen maximized))
+    (split-window-sensibly window)))
+
+(setq split-window-preferred-function #'my/split-window-maybe)
