@@ -34,7 +34,9 @@
   (ring-bell-function 'ignore)
   (menu-bar-mode nil)
   (tool-bar-mode nil)
-  (use-short-answers t))
+  (use-short-answers t)
+  (initial-frame-alist
+       '((top . 1) (left . 1) (width . 120) (height . 40))))
 
 (use-package ef-themes
   :ensure t)
@@ -123,10 +125,12 @@
   :config
   (eshell-vterm-mode))
 
-(use-package direnv
+(use-package envrc
   :ensure t
-  :init
-  (direnv-mode))
+  :custom
+  (envrc-remote t)
+  :config
+  (envrc-global-mode))
 
 (use-package treesit-auto
   :ensure t
@@ -178,8 +182,16 @@
 (keymap-global-set "C-." 'next-buffer)
 
 ;; Remap these for better ergonomics
-(keymap-global-set "C-x D" 'dired) ; replaces list-directory
+(keymap-global-set "C-x C-d" 'dired) ; replaces list-directory
 (keymap-global-set "C-x f" 'find-file) ; replaces set-fill-column
+
+
+(defun my/project-dired ()
+  "Prompt for a known project and open Dired in its root."
+  (interactive)
+  (dired (project-prompt-project-dir)))
+
+(keymap-global-set "C-x p p" 'my/project-dired)
 
 ;; Custom mappings
 (keymap-global-set "C-c E" 'eglot)
