@@ -64,6 +64,14 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.npm-global/bin" ] ; then
+    PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
 # enable direnv
 eval "$(direnv hook bash)"
 
