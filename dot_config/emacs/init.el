@@ -35,6 +35,7 @@
   (menu-bar-mode nil)
   (tool-bar-mode nil)
   (use-short-answers t)
+  (delete-selection-mode t)
   (initial-frame-alist
        '((top . 1) (left . 1) (width . 120) (height . 40))))
 
