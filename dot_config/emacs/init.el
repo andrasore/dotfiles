@@ -19,7 +19,7 @@
 (use-package emacs
   :custom
   (auto-save-default nil)
-  (custom-enabled-themes '(modus-vivendi-tinted))
+  (custom-enabled-themes '(ef-duo-dark))
   (fill-column 80)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
@@ -44,6 +44,8 @@
 
 (use-package treemacs
   :defer t
+  :custom
+  (treemacs-project-follow-mode t)
   :ensure t)
 
 (use-package typescript-mode
@@ -116,15 +118,11 @@
   ;; package.
   (marginalia-mode))
 
-(use-package eshell-vterm
+(use-package ghostel
   :defer t
-  :ensure t)
-
-(use-package vterm
-  :defer t
-  :ensure t
   :config
-  (eshell-vterm-mode))
+  (ghostel-eshell-visual-command-mode)
+  :ensure t)
 
 (use-package envrc
   :ensure t
@@ -196,11 +194,11 @@
 
 ;; Custom mappings
 (keymap-global-set "C-c E" 'eglot)
-(keymap-global-set "C-c t" (lambda () (interactive)
-                             (setq current-prefix-arg '(nil))
-                             (call-interactively 'vterm)))
-(keymap-global-set "C-c e" (lambda () (interactive) (eshell "")))
-(keymap-global-set "C-c u" 'ffap-menu)
+(keymap-global-set "C-c t"
+  (lambda (arg) (interactive "P") (ghostel (or arg t))))
+(keymap-global-set "C-c e"
+  (lambda (arg) (interactive "P") (eshell (or arg t))))
+(keymap-global-set "C-c u" 'ffap)
 (keymap-global-set "C-c T" 'treemacs)
 
 
