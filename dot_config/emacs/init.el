@@ -128,8 +128,8 @@
   :ensure t
   :custom
   (envrc-remote t)
-  :config
-  (envrc-global-mode))
+  ;; We must initialize straight away so other packages find the env
+  :hook (after-init . envrc-global-mode))
 
 (use-package treesit-auto
   :ensure t
@@ -158,13 +158,21 @@
          ("C-c f" . consult-fd)
          ("C-c g" . consult-ripgrep)))
 
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C" . claude-code-ide-menu)
-  :config
-  (claude-code-ide-emacs-tools-setup)
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C" . claude-code-ide-menu)
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)
+;;   :custom
+;;   (claude-code-ide-use-side-window nil))
+
+(use-package pilish
+  :ensure t
   :custom
-  (claude-code-ide-use-side-window nil)) 
+  (pilish-thinking-display 'hidden)
+  (pilish-thinking-hidden-preview t)
+  :bind (
+         ("C-c p". pilish)))
 
 ;; Enable auto-fill-mode for org-mode for wrapping long lines
 (add-hook 'org-mode-hook #'auto-fill-mode)
