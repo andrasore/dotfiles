@@ -1,1 +1,5 @@
 README.md
+# .xsessionrc is symlinked to .profile, but only on debian
+{{ if (ne .chezmoi.osRelease.id "debian") }}
+.xsessionrc
+{{ end }}
