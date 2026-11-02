@@ -27,7 +27,6 @@
   (make-backup-files nil)
   (dired-listing-switches "-alFh")
   (dired-create-destination-dirs 'ask)
-  (org-startup-indented t)
   (scroll-bar-mode nil)
   (tab-width 4)
   (recentf-max-saved-items 200)
@@ -37,7 +36,20 @@
   (use-short-answers t)
   (delete-selection-mode t)
   (initial-frame-alist
-       '((top . 1) (left . 1) (width . 120) (height . 40))))
+   '((top . 1) (left . 1) (width . 120) (height . 40))))
+
+(use-package org
+  :custom
+  (org-startup-indented t)
+  (org-agenda-files '("~/org/"))
+  (org-outline-path-complete-in-steps nil)
+  (org-refile-use-outline-path 'file)
+  (org-todo-keywords
+   '((sequence "TODO" "DOING" "DONE")))
+  (org-todo-keyword-faces
+   '(("TODO"  . (:foreground "red"    :weight bold))
+     ("DOING" . (:foreground "yellow" :weight bold))
+     ("DONE"  . (:foreground "green"  :weight bold)))))
 
 (use-package ef-themes
   :ensure t)
